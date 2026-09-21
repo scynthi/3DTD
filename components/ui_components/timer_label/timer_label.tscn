@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bxcbfq5dhh78v"]
+
+[ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="1_jkvud"]
+[ext_resource type="Script" uid="uid://c2sajersrca11" path="res://components/ui_components/timer_label/timer_label.gd" id="2_2rmt0"]
+
+[node name="TimerLabel" type="Control" unique_id=20988664]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jkvud")
+script = ExtResource("2_2rmt0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=902923742]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+horizontal_alignment = 1
+vertical_alignment = 1

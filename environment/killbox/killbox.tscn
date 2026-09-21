@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5cucfbfqghhq"]
+
+[ext_resource type="Script" uid="uid://bfh4fedvhufrw" path="res://environment/killbox/killbox.gd" id="1_07fjl"]
+
+[node name="Killbox" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_07fjl")
+metadata/_custom_type_script = "uid://7vebtuf5s7th"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

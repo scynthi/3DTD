@@ -1,0 +1,524 @@
+[gd_scene format=3 uid="uid://nb87nmyy612u"]
+
+[ext_resource type="Script" uid="uid://c478hkmvkarvn" path="res://entities/player/player.gd" id="1_k55ju"]
+[ext_resource type="Script" uid="uid://divs564h3bttu" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="2_o28un"]
+[ext_resource type="Resource" uid="uid://bjhwjy01c234h" path="res://entities/player/guide_controls/basic_movement.tres" id="2_rkbax"]
+[ext_resource type="Resource" uid="uid://wso1444ylumf" path="res://entities/player/guide_controls/control.tres" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://dw1akrloaujsh" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="3_hshwv"]
+[ext_resource type="Script" uid="uid://h5ua7o8mgyuq" path="res://addons/shaker/src/Vector3/ShakerReceiver3D.gd" id="3_n471f"]
+[ext_resource type="Resource" uid="uid://oxtcf2r6hkna" path="res://entities/player/guide_controls/sprint.tres" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://dk16d6fv8p01t" path="res://addons/shaker/data/Vector3/ShakerTypeSineWave3D.gd" id="4_gpjlu"]
+[ext_resource type="Script" uid="uid://2n6800g3xhuc" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="5_8mwp6"]
+[ext_resource type="Resource" uid="uid://buoqhhbpwesrb" path="res://entities/player/guide_controls/jump.tres" id="5_qjkh3"]
+[ext_resource type="Resource" uid="uid://blo5o1hiugm8k" path="res://entities/player/guide_controls/rotate_player.tres" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://b58amq2a2d6vg" path="res://entities/player/controllers/particle_controller/particle_controller.gd" id="7_7pqkx"]
+[ext_resource type="Resource" uid="uid://dketmja5blwh7" path="res://entities/player/guide_controls/rotate_camera.tres" id="7_boad6"]
+[ext_resource type="Script" uid="uid://wokw6keptfmf" path="res://entities/player/guide_controls/input_handler.gd" id="8_rgyib"]
+[ext_resource type="Resource" uid="uid://cupawg2fawjrm" path="res://entities/player/guide_controls/crouch.tres" id="9_hg6s5"]
+[ext_resource type="Script" uid="uid://re3qbc5uwhrh" path="res://entities/player/state_machine/state_machine.gd" id="10_x3vf3"]
+[ext_resource type="Script" uid="uid://cqkn41f0sbej1" path="res://entities/player/state_machine/player_states/WalkingState.gd" id="11_apopc"]
+[ext_resource type="Script" uid="uid://3a0bwiunay7l" path="res://entities/player/state_machine/player_states/InAirState.gd" id="12_gu6f8"]
+[ext_resource type="Script" uid="uid://c7kffjo5au1dk" path="res://entities/player/state_machine/player_states/CrouchState.gd" id="13_dkpta"]
+[ext_resource type="Resource" uid="uid://kff1fxkvfkio" path="res://entities/player/guide_controls/noclip.tres" id="15_g4c7l"]
+[ext_resource type="Script" uid="uid://gohywy63te6y" path="res://entities/player/state_machine/player_states/RunningState.gd" id="15_lfmf2"]
+[ext_resource type="Script" uid="uid://chfcmxruj72hq" path="res://entities/player/state_machine/player_states/SlideState.gd" id="16_lfmf2"]
+[ext_resource type="Script" uid="uid://bctdwiimth53a" path="res://entities/player/state_machine/player_states/JumpState.gd" id="16_pisgm"]
+[ext_resource type="Script" uid="uid://crfewekb0fui5" path="res://entities/player/state_machine/player_states/DashState.gd" id="17_pisgm"]
+[ext_resource type="Resource" uid="uid://dr21ydsuut2lk" path="res://entities/player/guide_controls/camera_switch.tres" id="21_bwdx1"]
+[ext_resource type="Script" uid="uid://dvm2w2k0qprao" path="res://entities/player/state_machine/player_states/WallrunningState.gd" id="23_gpjlu"]
+[ext_resource type="Script" uid="uid://dyg1vadpekc67" path="res://entities/player/state_machine/player_states/NoClipState.gd" id="25_knn7v"]
+[ext_resource type="PackedScene" uid="uid://1ghmtj5jdp7t" path="res://entities/player/player_ui/player_ui.tscn" id="27_uw77l"]
+[ext_resource type="Script" uid="uid://com6y8rmfl15q" path="res://components/fight_components/health_handler/health_handler.gd" id="28_24ehl"]
+[ext_resource type="Script" uid="uid://bgitycnvmaif6" path="res://components/fight_components/health_component/health_component.gd" id="29_bwdx1"]
+[ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="31_bwdx1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tfpph"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hg6s5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hg6s5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bwdx1"]
+
+[sub_resource type="Resource" id="Resource_qemgg"]
+script = ExtResource("4_gpjlu")
+frequency = Vector3(10, 1, 1)
+amplitude = Vector3(0.1, 0.1, 0.1)
+metadata/_custom_type_script = "uid://dk16d6fv8p01t"
+
+[sub_resource type="Resource" id="Resource_8viyr"]
+script = ExtResource("5_8mwp6")
+PositionShake = Array[ExtResource("3_hshwv")]([SubResource("Resource_qemgg")])
+metadata/_custom_type_script = "uid://2n6800g3xhuc"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7emwf"]
+radius = 0.58254
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_knn7v"]
+emission_shape = 3
+emission_box_extents = Vector3(0.3, 0.6, 0.5)
+linear_accel_min = 800.0
+linear_accel_max = 800.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pqkx"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.188235)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uw77l"]
+material = SubResource("StandardMaterial3D_7pqkx")
+radius = 0.005
+height = 1.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Animation" id="Animation_7pqkx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticlesRight:amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticlesLeft:amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticlesLeft:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticlesRight:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_knn7v"]
+resource_name = "wind_end"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticlesRight:amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.493333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 4, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticlesLeft:amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.493333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 4, 2, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticlesLeft:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticlesRight:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uw77l"]
+_data = {
+&"RESET": SubResource("Animation_7pqkx"),
+&"wind_end": SubResource("Animation_knn7v")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gpjlu"]
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qpopc"]
+height = 0.75
+radius = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_knn7v"]
+height = 0.75
+radius = 0.1
+
+[sub_resource type="Animation" id="Animation_00tjw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleMesh_tfpph")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ebec5"]
+resource_name = "crouch_end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrouchingCollision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StandingCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerVisual:mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleMesh_tfpph")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0)]
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_8t03j"]
+
+[sub_resource type="Animation" id="Animation_2ieo8"]
+resource_name = "crouch_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SphereMesh_8t03j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CrouchingCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StandingCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.101839, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yllr7"]
+_data = {
+&"RESET": SubResource("Animation_00tjw"),
+&"crouch_end": SubResource("Animation_ebec5"),
+&"crouch_start": SubResource("Animation_2ieo8")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=580702867 node_paths=PackedStringArray("input_handler") groups=["ent_obj_teleportation_enabled"]]
+collision_layer = 2
+floor_snap_length = 1.0
+script = ExtResource("1_k55ju")
+input_handler = NodePath("InputHandler")
+enable_noclip = true
+
+[node name="PlayerVisual" type="MeshInstance3D" parent="." unique_id=375755153]
+mesh = SubResource("CapsuleMesh_tfpph")
+
+[node name="StandingCollision" type="CollisionShape3D" parent="." unique_id=419772712]
+shape = SubResource("CapsuleShape3D_hg6s5")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="CrouchingCollision" type="CollisionShape3D" parent="." unique_id=1058574312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00514555, 0)
+shape = SubResource("SphereShape3D_hg6s5")
+disabled = true
+debug_color = Color(0.858824, 0, 0.882353, 1)
+
+[node name="DamageHandler" type="Node3D" parent="." unique_id=1954359480 node_paths=PackedStringArray("health_component")]
+script = ExtResource("28_24ehl")
+health_component = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node3D" parent="DamageHandler" unique_id=1116516064]
+script = ExtResource("29_bwdx1")
+max_health = 1.0
+
+[node name="HurtboxComponent" parent="DamageHandler" unique_id=1421520628 node_paths=PackedStringArray("damage_handler") instance=ExtResource("31_bwdx1")]
+damage_handler = NodePath("..")
+
+[node name="CollisionShape3D" parent="DamageHandler/HurtboxComponent" index="0"]
+shape = SubResource("CylinderShape3D_bwdx1")
+
+[node name="Head" type="Node3D" parent="." unique_id=1116956150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="CameraSmooth" type="Node3D" parent="Head" unique_id=1024225638]
+
+[node name="FPSCamera" type="Camera3D" parent="Head/CameraSmooth" unique_id=2120667315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0970001, -0.1, -0.0799999)
+current = true
+
+[node name="ShakerComponent3D" type="Node3D" parent="Head/CameraSmooth/FPSCamera" unique_id=204067853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0098423, 0, 0)
+script = ExtResource("2_o28un")
+shakerPreset = SubResource("Resource_8viyr")
+metadata/_custom_type_script = "uid://divs564h3bttu"
+
+[node name="ShakerReceiver3D" type="Node3D" parent="Head/CameraSmooth/FPSCamera/ShakerComponent3D" unique_id=1439388598]
+script = ExtResource("3_n471f")
+metadata/_custom_type_script = "uid://h5ua7o8mgyuq"
+
+[node name="Area3D" type="Area3D" parent="Head/CameraSmooth/FPSCamera/ShakerComponent3D/ShakerReceiver3D" unique_id=1460287084]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/CameraSmooth/FPSCamera/ShakerComponent3D/ShakerReceiver3D/Area3D" unique_id=1998032127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102493, -0.51633, 0)
+shape = SubResource("CapsuleShape3D_7emwf")
+
+[node name="ParticleController" type="Node3D" parent="Head/CameraSmooth/FPSCamera" unique_id=1281673933 node_paths=PackedStringArray("player")]
+script = ExtResource("7_7pqkx")
+player = NodePath("../../../..")
+
+[node name="GPUParticlesLeft" type="GPUParticles3D" parent="Head/CameraSmooth/FPSCamera/ParticleController" unique_id=779851678]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.623942, 0, -0.850538)
+emitting = false
+lifetime = 0.05
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_knn7v")
+draw_pass_1 = SubResource("CapsuleMesh_uw77l")
+
+[node name="GPUParticlesRight" type="GPUParticles3D" parent="Head/CameraSmooth/FPSCamera/ParticleController" unique_id=833794963]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.624, 0, -0.851)
+emitting = false
+lifetime = 0.05
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_knn7v")
+draw_pass_1 = SubResource("CapsuleMesh_uw77l")
+
+[node name="ParticleAnimationPlayer" type="AnimationPlayer" parent="Head/CameraSmooth/FPSCamera/ParticleController" unique_id=1745344013]
+libraries/ = SubResource("AnimationLibrary_uw77l")
+
+[node name="TPSSpring" type="SpringArm3D" parent="Head/CameraSmooth" unique_id=1021713801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5679554, 0)
+spring_length = 3.0
+
+[node name="TPSCamera" type="Camera3D" parent="Head/CameraSmooth/TPSSpring" unique_id=1129265066]
+transform = Transform3D(1, 0, 0, 0, 0.9836439, 0.18012431, 0, -0.18012431, 0.9836439, 0, 0, 0)
+fov = 110.0
+
+[node name="SlopeCheckShapecast" type="ShapeCast3D" parent="Head" unique_id=948587786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.598061, 0)
+shape = SubResource("CylinderShape3D_gpjlu")
+target_position = Vector3(0, -1.1, 0)
+max_results = 2
+
+[node name="LeftWallCheckShapecast" type="ShapeCast3D" parent="Head" unique_id=609172194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.85522, 0)
+shape = SubResource("CylinderShape3D_qpopc")
+target_position = Vector3(-0.7, 0, 0)
+max_results = 2
+
+[node name="RightWallCheckShapecast" type="ShapeCast3D" parent="Head" unique_id=202498591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.855586, 0)
+shape = SubResource("CylinderShape3D_knn7v")
+target_position = Vector3(0.7, 0, 0)
+max_results = 2
+
+[node name="PlayerUI" parent="." unique_id=2103962934 node_paths=PackedStringArray("player") instance=ExtResource("27_uw77l")]
+crosshair_type = 3
+player = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=868559873]
+libraries/ = SubResource("AnimationLibrary_yllr7")
+
+[node name="InputHandler" type="Node" parent="." unique_id=1552934280]
+script = ExtResource("8_rgyib")
+MAPPING_CONTEXT = ExtResource("3_g1dw6")
+BASIC_MOVEMENT = ExtResource("2_rkbax")
+ROTATE_PLAYER = ExtResource("6_g6k8r")
+ROTATE_CAMERA = ExtResource("7_boad6")
+SHIFT = ExtResource("3_yw30f")
+SPACE = ExtResource("5_qjkh3")
+CONTROL = ExtResource("9_hg6s5")
+NOCLIP = ExtResource("15_g4c7l")
+CAMERA_SWITCH = ExtResource("21_bwdx1")
+
+[node name="Timers" type="Node" parent="." unique_id=660270552]
+
+[node name="JumpCooldownTimer" type="Timer" parent="Timers" unique_id=938722171]
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1656639436]
+one_shot = true
+
+[node name="WallRunCooldownTimer" type="Timer" parent="Timers" unique_id=998049918]
+wait_time = 0.35
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Timers" unique_id=2047372131]
+one_shot = true
+
+[node name="JumpBuffer" type="Timer" parent="Timers" unique_id=1400536869]
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=717059939 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("10_x3vf3")
+initial_state = NodePath("WalkState")
+print_debug_messages = false
+metadata/_custom_type_script = "uid://re3qbc5uwhrh"
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=1857065927]
+script = ExtResource("11_apopc")
+metadata/_custom_type_script = "uid://cqkn41f0sbej1"
+
+[node name="JumpState" type="Node" parent="StateMachine" unique_id=900394769]
+script = ExtResource("16_pisgm")
+metadata/_custom_type_script = "uid://bctdwiimth53a"
+
+[node name="InAirState" type="Node" parent="StateMachine" unique_id=2045521998]
+script = ExtResource("12_gu6f8")
+metadata/_custom_type_script = "uid://3a0bwiunay7l"
+
+[node name="RunState" type="Node" parent="StateMachine" unique_id=854317356]
+script = ExtResource("15_lfmf2")
+metadata/_custom_type_script = "uid://gohywy63te6y"
+
+[node name="CrouchState" type="Node" parent="StateMachine" unique_id=117720159]
+script = ExtResource("13_dkpta")
+metadata/_custom_type_script = "uid://c7kffjo5au1dk"
+
+[node name="SlideState" type="Node" parent="StateMachine" unique_id=1075172477]
+script = ExtResource("16_lfmf2")
+metadata/_custom_type_script = "uid://chfcmxruj72hq"
+
+[node name="DashState" type="Node" parent="StateMachine" unique_id=382753403]
+script = ExtResource("17_pisgm")
+metadata/_custom_type_script = "uid://crfewekb0fui5"
+
+[node name="WallrunState" type="Node" parent="StateMachine" unique_id=2093588718]
+script = ExtResource("23_gpjlu")
+metadata/_custom_type_script = "uid://dvm2w2k0qprao"
+
+[node name="NoClipState" type="Node" parent="StateMachine" unique_id=766793532]
+script = ExtResource("25_knn7v")
+metadata/_custom_type_script = "uid://dyg1vadpekc67"
+
+[connection signal="health_drained" from="DamageHandler" to="." method="_on_damage_handler_health_drained"]
+
+[editable path="DamageHandler/HurtboxComponent"]

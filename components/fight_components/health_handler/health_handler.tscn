@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ks4ysvijrrhp"]
+
+[ext_resource type="Script" uid="uid://com6y8rmfl15q" path="res://components/fight_components/health_handler/health_handler.gd" id="1_7qnds"]
+
+[node name="HealthHandler" type="Node3D" unique_id=381838993]
+script = ExtResource("1_7qnds")

@@ -1,0 +1,171 @@
+[gd_scene load_steps=14 format=3 uid="uid://bkkno47n68ijp"]
+
+[ext_resource type="Script" uid="uid://b01g10rar3gd6" path="res://assets/models/PortalObject/portal.gd" id="1_1j0n6"]
+[ext_resource type="Shader" uid="uid://bt2ct6ha6thpa" path="res://assets/textures/materials/shaders/portal.gdshader" id="2_rc5iu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kao2b"]
+margin = 2.0
+size = Vector3(2, 3.375, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tb6qg"]
+size = Vector3(1.466, 3.375, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bq5he"]
+resource_local_to_scene = true
+shading_mode = 0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_rc5iu"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_bq5he")
+radius = 1.971
+radial_steps = 20
+section_length = 0.001
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_bq5he"]
+resource_local_to_scene = true
+radius = 1.8
+radial_steps = 20
+section_length = 0.001
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rc5iu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hhrws"]
+seamless = true
+seamless_blend_skirt = 0.5
+noise = SubResource("FastNoiseLite_rc5iu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wnnl"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_rc5iu")
+shader_parameter/noise = SubResource("NoiseTexture2D_hhrws")
+shader_parameter/show_viewport = false
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/min_alpha_value = 0.6
+shader_parameter/max_alpha_value = 1.0
+shader_parameter/time_scale = 0.25
+
+[sub_resource type="Animation" id="Animation_kao2b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalVisual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalVisual:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tb6qg"]
+resource_name = "place"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalVisual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalVisual:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0239247),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7yqm"]
+_data = {
+&"RESET": SubResource("Animation_kao2b"),
+&"place": SubResource("Animation_tb6qg")
+}
+
+[node name="Portal" type="Node3D"]
+script = ExtResource("1_1j0n6")
+detection_shape = SubResource("BoxShape3D_kao2b")
+teleportation_shape = SubResource("BoxShape3D_tb6qg")
+
+[node name="PortalVisual" type="Node3D" parent="."]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+visible = false
+
+[node name="ColorMesh" type="MeshInstance3D" parent="PortalVisual"]
+transform = Transform3D(0.621354, 0, 0, 0, -4.3702e-08, -1.0863, 0, 0.999786, -4.74838e-08, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_rc5iu")
+skeleton = NodePath("../..")
+
+[node name="VisionMesh" type="MeshInstance3D" parent="PortalVisual"]
+transform = Transform3D(-0.621354, -8.74041e-08, 4.15117e-15, 0, -4.3702e-08, -1.0863, 5.43205e-08, -0.999786, 4.74838e-08, 0, 0, -0.00710663)
+mesh = SubResource("TubeTrailMesh_bq5he")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_2wnnl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w7yqm")
+}
+autoplay = "place"
+
+[node name="PortalFunctionality" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="PortalFunctionality"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 2
+
+[node name="Camera" type="Camera3D" parent="PortalFunctionality/SubViewport"]
+
+[node name="Markers" type="Node3D" parent="PortalFunctionality"]
+
+[node name="PlayerSpawnPosition" type="Marker3D" parent="PortalFunctionality/Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.46, -0.9)
+
+[node name="PlayerLookPosition" type="Marker3D" parent="PortalFunctionality/Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, -7.64924)
+
+[node name="Raycasts" type="Node3D" parent="PortalFunctionality"]
+
+[node name="RightSurfaceCheck" type="RayCast3D" parent="PortalFunctionality/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17776, 0, -0.542064)
+target_position = Vector3(0, 0, 1)
+hit_from_inside = true
+
+[node name="LefturfaceCheck" type="RayCast3D" parent="PortalFunctionality/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16491, 0, -0.542064)
+target_position = Vector3(0, 0, 1)
+hit_from_inside = true
+
+[node name="TopSurfaceCheck" type="RayCast3D" parent="PortalFunctionality/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.542064)
+target_position = Vector3(0, 0, 1)
+hit_from_inside = true
+
+[node name="BottomSurfaceCheck" type="RayCast3D" parent="PortalFunctionality/Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -0.542064)
+target_position = Vector3(0, 0, 1)
+hit_from_inside = true

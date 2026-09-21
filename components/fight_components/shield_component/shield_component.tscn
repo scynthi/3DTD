@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bl1irjc75x7i"]
+
+[ext_resource type="Script" uid="uid://bskl5d1evxwo1" path="res://components/fight_components/shield_component/shield_component.gd" id="1_tvjy3"]
+
+[node name="ShieldComponent" type="Node3D"]
+script = ExtResource("1_tvjy3")

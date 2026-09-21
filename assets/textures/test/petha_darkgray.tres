@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7na2ny35c3dv"]
+
+[ext_resource type="Texture2D" uid="uid://dee3kggjavdua" path="res://assets/textures/test/petha_darkgray.png" id="1_8crg2"]
+
+[resource]
+albedo_texture = ExtResource("1_8crg2")
+metallic_specular = 0.0
+texture_filter = 2

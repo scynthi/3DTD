@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bf1vvjeptw4fv"]
+
+[ext_resource type="FontFile" uid="uid://7htxca65mquu" path="res://assets/ui_assets/fonts/vcr_osd_mono.ttf" id="1_hob11"]
+
+[resource]
+Button/fonts/font = ExtResource("1_hob11")
+Label/fonts/font = ExtResource("1_hob11")
+ProgressBar/fonts/font = ExtResource("1_hob11")

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://fhlqxiylwhuv"]
+
+[ext_resource type="PackedScene" uid="uid://1ghmtj5jdp7t" path="res://entities/player/player_ui/player_ui.tscn" id="1_6jqax"]
+[ext_resource type="Script" uid="uid://clrjse233gs4e" path="res://trenchbroom/maps/default_map.gd" id="1_x61gs"]
+[ext_resource type="Script" uid="uid://domhsj71wlpgl" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_obhcx"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_j7byj"]
+
+[sub_resource type="Gradient" id="Gradient_dwbse"]
+offsets = PackedFloat32Array(0.535826, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pkg7o"]
+noise_type = 0
+seed = 40
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gbfbk"]
+noise = SubResource("FastNoiseLite_pkg7o")
+color_ramp = SubResource("Gradient_dwbse")
+seamless = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7tqe1"]
+sky_cover = SubResource("NoiseTexture2D_gbfbk")
+
+[sub_resource type="Sky" id="Sky_2p380"]
+sky_material = SubResource("ProceduralSkyMaterial_7tqe1")
+
+[sub_resource type="Environment" id="Environment_o8phm"]
+background_mode = 2
+sky = SubResource("Sky_2p380")
+sdfgi_use_occlusion = true
+volumetric_fog_density = 1.0
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 8.0
+adjustment_brightness = 8.0
+adjustment_contrast = 8.0
+adjustment_saturation = 1.83
+
+[node name="World" type="Node3D" unique_id=740222304]
+script = ExtResource("1_x61gs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1799798538]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.946566, 0)
+
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=718746450]
+script = ExtResource("2_obhcx")
+local_map_file = "res://trenchbroom/maps/default_map.map"
+map_settings = ExtResource("3_j7byj")
+metadata/_custom_type_script = "uid://domhsj71wlpgl"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1654263795]
+environment = SubResource("Environment_o8phm")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=886938423]
+transform = Transform3D(-3.090862e-08, 0.7071068, -0.7071068, 3.090862e-08, 0.7071068, 0.7071068, 1, 0, -4.3711392e-08, -13.630344, 13.288373, 0)
+
+[node name="PlayerUI" parent="Camera3D" unique_id=1548436313 instance=ExtResource("1_6jqax")]
+crosshair_type = 1
+dot_color = Color(0, 1, 1, 1)
+dot_draw_outline = true
+fourcross_width = 3.0
+fourcross_draw_outline = true
+fourcross_outline_size = 4.0

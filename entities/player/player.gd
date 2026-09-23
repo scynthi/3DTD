@@ -37,9 +37,9 @@ class_name Player extends CharacterBody3D
 
 @export_group("Camera Settings")
 @export_range(1, 150) var base_fov : float = 90.0
-@export_range(1, 10) var fov_change : float = 1.1
-@export_range(1, 100) var mouse_sensitivity : float = 1.0
-@export_range(1, 10) var camera_smooth_lag : float = 4.0
+@export_range(0, 10) var fov_change : float = 1.1
+@export_range(0, 100) var mouse_sensitivity : float = 1.0
+@export_range(0, 10) var camera_smooth_lag : float = 4.0
 @export var max_camera_x_rotation : float = 90.0
 @export_subgroup("Head bob")
 @export var headbob_enabled : bool = true
@@ -261,6 +261,8 @@ var impact_strength : float
 var saved_vertical_velocity : float
 
 func _camera_impact_effect(delta : float):
+	if !impact_effect_enabled: return
+	
 	if !is_on_floor():
 		_camera_min_vertical_angle_increase_value = 20.0
 		

@@ -24,11 +24,12 @@ class_name PlayerUI extends Control
 @export var fourcross_draw_outline : bool = false
 @export var fourcross_outline_color : Color = Color.BLACK
 @export var fourcross_outline_size : float = 3.0
-
-var _cross_hair_position : Vector2
+@export var _cross_hair_position : Vector2
+@export var disable_crosshair_position_calculation : bool = false
 
 func _process(_delta: float) -> void:
-	_cross_hair_position = get_viewport_rect().get_center() - crosshair_center_offset
+	if !disable_crosshair_position_calculation:
+		_cross_hair_position = get_viewport_rect().get_center() - crosshair_center_offset
 	queue_redraw()
 
 func _draw() -> void:

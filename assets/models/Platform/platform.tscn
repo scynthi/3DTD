@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://sec7kuc7mi8j"]
+
+[ext_resource type="Script" uid="uid://be52vtcwvltf3" path="res://assets/models/Platform/platform.gd" id="1_4p0y3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6e6s"]
+albedo_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kv3xr"]
+material = SubResource("StandardMaterial3D_w6e6s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kv3xr"]
+size = Vector3(2, 2, 2)
+
+[node name="Platform" type="StaticBody3D" unique_id=170441316]
+collision_layer = 2
+script = ExtResource("1_4p0y3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=901651766]
+mesh = SubResource("PlaneMesh_kv3xr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1264603127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_kv3xr")

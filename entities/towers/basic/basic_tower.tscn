@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://3uxbogo5bifb"]
+
+[ext_resource type="Script" uid="uid://b4jb4e6xf0ncc" path="res://entities/towers/basic/basic_tower.gd" id="1_p0drk"]
+[ext_resource type="PackedScene" uid="uid://ks4ysvijrrhp" path="res://components/fight_components/health_handler/health_handler.tscn" id="2_ctiyy"]
+[ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="3_k6dhx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0drk"]
+albedo_color = Color(0, 0.6901961, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6e6s"]
+size = Vector3(4, 1.9833984, 3)
+
+[node name="BasicTower" type="Node3D" unique_id=281287575]
+script = ExtResource("1_p0drk")
+
+[node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_ctiyy")]
+health_component = NodePath("HealthComponent")
+
+[node name="HealthComponent" parent="HealthHandler" unique_id=959973023 instance=ExtResource("3_k6dhx")]
+
+[node name="Body" type="CSGBox3D" parent="." unique_id=568464956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3223267, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 0
+size = Vector3(1.2900391, 2.6446533, 0.80566406)
+
+[node name="Head" type="Marker3D" parent="." unique_id=639459238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4015713, -0.38371876)
+
+[node name="Head" type="CSGBox3D" parent="Head" unique_id=2054450730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.37367365)
+use_collision = true
+collision_layer = 8
+collision_mask = 0
+size = Vector3(0.2265625, 0.22180176, 0.74102783)
+material = SubResource("StandardMaterial3D_p0drk")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=462242013]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=583022030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+shape = SubResource("BoxShape3D_w6e6s")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

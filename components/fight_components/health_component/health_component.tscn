@@ -2,5 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bgitycnvmaif6" path="res://components/fight_components/health_component/health_component.gd" id="1_ol33d"]
 
-[node name="HealthComponent" type="Node3D"]
+[node name="HealthComponent" type="Node3D" unique_id=1427219598]
 script = ExtResource("1_ol33d")
+
+[node name="RegenTimer" type="Timer" parent="." unique_id=1010431874]
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

@@ -1,6 +1,10 @@
 class_name HealthComponent extends Node3D
 
 @export var max_health : float = 10.0
+@export var regen_time : float = 2.5
+@export var regen_amount : float = 1.0
+
+@onready var regen_timer: Timer = $RegenTimer
 
 signal died
 
@@ -9,6 +13,7 @@ var enabled_health_overflow : bool = true
 var overheal_effect_duration : float = 2.0
 
 func _ready() -> void:
+	regen_timer.wait_time = regen_time
 	fullheal()
 	
 
@@ -29,5 +34,16 @@ func damage(amount : float) -> void:
 	current_health -= amount
 	
 	if current_health <= 0.0:
+		regen_timer.stop()
+		current_health = -1
 		died.emit()
+		return
+		
+	
+	if regen_timer.is_stopped() and regen_time > 0.0:
+		regen_timer.start(regen_time)
+	
+
+func _on_regen_timer_timeout() -> void:
+	heal(regen_amount)
 	

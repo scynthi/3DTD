@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cbl80l6a2voyq"]
+
+[ext_resource type="Texture2D" uid="uid://bf4tsp7yb2w7v" path="res://assets/textures/game/cigan.jpg" id="1_2pxtc"]
+[ext_resource type="Script" uid="uid://c3iopu8lxnx04" path="res://entities/towers/nexus/nexus.gd" id="2_pl1i6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pxtc"]
+albedo_texture = ExtResource("1_2pxtc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl1i6"]
+
+[node name="Nexus" type="CSGBox3D" unique_id=1245046979 groups=["nexus"]]
+material = SubResource("StandardMaterial3D_2pxtc")
+script = ExtResource("2_pl1i6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=406714484]
+shape = SubResource("BoxShape3D_pl1i6")

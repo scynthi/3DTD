@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c383votm41dgv" path="res://entities/3dtd_player/player_camera.tscn" id="1_6jqax"]
 [ext_resource type="PackedScene" uid="uid://sec7kuc7mi8j" path="res://assets/models/Platform/platform.tscn" id="1_6q6tr"]
+[ext_resource type="PackedScene" uid="uid://niicsrpmo0b" path="res://entities/enemies/basic/basic_enemy.tscn" id="3_j7byj"]
+[ext_resource type="PackedScene" uid="uid://cbl80l6a2voyq" path="res://entities/towers/nexus/nexus.tscn" id="4_x61gs"]
 
 [sub_resource type="Gradient" id="Gradient_dwbse"]
 offsets = PackedFloat32Array(0.535826, 1)
@@ -242,9 +244,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.51, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.51, 0)
 
 [node name="Map2" type="CSGBox3D" parent="Map/NavigationRegion3D" unique_id=1694308120]
+use_collision = true
 size = Vector3(30, 1, 60)
 material = SubResource("StandardMaterial3D_6jqax")
 
 [node name="Camera3D" parent="." unique_id=1381312223 instance=ExtResource("1_6jqax")]
 transform = Transform3D(-4.371139e-08, 0.54463905, -0.83867055, 0, 0.83867055, 0.54463905, 1, 2.380693e-08, -3.6659454e-08, -30.227, 25, 0)
 fov = 80.0
+
+[node name="BasicEnemy" parent="." unique_id=887717794 instance=ExtResource("3_j7byj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -28.71838)
+
+[node name="Nexus" parent="." unique_id=1245046979 instance=ExtResource("4_x61gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 26)

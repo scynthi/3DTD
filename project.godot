@@ -58,10 +58,8 @@ folder_colors={
 
 [global_group]
 
-surf_portal_surface=""
-surf_slideable_surface=""
-ent_obj_teleportation_enabled=""
-surf_wallrunable_surface=""
+nexus=""
+enemy=""
 
 [input]
 

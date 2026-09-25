@@ -14,3 +14,4 @@ mouse_filter = 1
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_hhrgv")
 fourcross_width = 1.0
+_cross_hair_position = Vector2(614.5, 309)

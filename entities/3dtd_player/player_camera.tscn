@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1ghmtj5jdp7t" path="res://entities/player/player_ui/player_ui.tscn" id="1_wm1v3"]
 [ext_resource type="Script" uid="uid://du82nk17tcft1" path="res://entities/3dtd_player/player_camera.gd" id="1_xp13a"]
+[ext_resource type="Script" uid="uid://cgwh7vl8jacuu" path="res://entities/3dtd_player/ui.gd" id="2_ves7s"]
 
 [node name="Camera3D" type="Camera3D" unique_id=1381312223]
 script = ExtResource("1_xp13a")
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_ves7s")
 
 [node name="PlayerUI" parent="UI" unique_id=1548436313 instance=ExtResource("1_wm1v3")]
 layout_mode = 1
@@ -26,7 +28,6 @@ fourcross_width = 4.0
 fourcross_color = Color(0, 0.5058824, 1, 1)
 fourcross_draw_outline = true
 fourcross_outline_size = 5.0
-_cross_hair_position = Vector2(1, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=1754845173]
 layout_mode = 1
@@ -48,6 +49,11 @@ scroll_active = false
 
 [node name="Label" type="Label" parent="UI" unique_id=446600323]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 12.0
+offset_right = 97.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
 text = "3DTD BETA"

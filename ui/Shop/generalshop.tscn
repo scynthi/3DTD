@@ -15,6 +15,10 @@ font_color = Color(1, 0, 1, 1)
 font_size = 20
 font_color = Color(1, 0, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_i4qga"]
+font_size = 20
+font_color = Color(1, 0, 1, 1)
+
 [node name="Shop" type="Control" unique_id=1099879294]
 layout_mode = 3
 anchors_preset = 15
@@ -29,10 +33,10 @@ anchors_preset = -1
 anchor_top = 0.76900005
 anchor_right = 1.0
 anchor_bottom = 0.994
-offset_left = 23.0
-offset_top = -159.52008
-offset_right = -1477.0
-offset_bottom = -4.5200195
+offset_left = 13.0
+offset_top = -303.52008
+offset_right = -1467.0
+offset_bottom = -2.5200195
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -92,6 +96,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/AttackRangeContainer" unique_id=345147423]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+text = "(Ár)"
+
+[node name="AttackRangeContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1584509780]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AttackRangeContainer2" unique_id=1246215085]
+custom_minimum_size = Vector2(300, 130)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0gblk")
+text = "HP
+Current (10)
+Next (11)"
+label_settings = SubResource("LabelSettings_i4qga")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/AttackRangeContainer2" unique_id=1561584849]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
 text = "(Ár)"

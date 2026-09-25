@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b6upmpyxhxife"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6khqe"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_psjpc"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqgdi"]
+font_size = 60
+
+[node name="Turretshop" type="Control" unique_id=1227217042]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1652956638]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Turret1Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1336601673]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret1Cont" unique_id=232468370]
+layout_mode = 2
+text = "(Turret 1)"
+label_settings = SubResource("LabelSettings_6khqe")
+
+[node name="Button" type="Button" parent="VBoxContainer/Turret1Cont" unique_id=1625734739]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "(Ár)"
+
+[node name="Turret2Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1768651334]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret2Cont" unique_id=1882681043]
+layout_mode = 2
+text = "(Turret 2)"
+label_settings = SubResource("LabelSettings_psjpc")
+
+[node name="Button" type="Button" parent="VBoxContainer/Turret2Cont" unique_id=1118532669]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "(Ár)"
+
+[node name="Turret3Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=611468671]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret3Cont" unique_id=275400710]
+layout_mode = 2
+text = "(Turret 3)"
+label_settings = SubResource("LabelSettings_kqgdi")
+
+[node name="Button" type="Button" parent="VBoxContainer/Turret3Cont" unique_id=660701920]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "(Ár)"

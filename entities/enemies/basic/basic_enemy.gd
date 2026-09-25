@@ -1,6 +1,7 @@
 class_name BasicEnemy extends CharacterBody3D
 
 @export var speed : float = 2.5
+@export var value : int = 1.0
 
 @onready var timer: Timer = $Timer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
@@ -16,6 +17,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	velocity = direction * speed
+	
+	if global.nexus: look_at(global.nexus.global_position)
+	
 	move_and_slide()
 	
 
@@ -23,4 +27,10 @@ func _recalculate_path() -> void:
 	var destination : Vector3 = nav_agent.get_next_path_position()
 	var local_destination = destination - global_position
 	direction = local_destination.normalized()
+	
+
+
+func _on_health_handler_health_drained() -> void:
+	global.player_fragments += value
+	queue_free()
 	

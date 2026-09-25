@@ -1,10 +1,17 @@
 extends Camera3D
 
 @onready var player_ui: PlayerUI = $UI/PlayerUI
+@onready var default_position : Vector3 = self.global_position
+
+var set_position : Vector3 = Vector3.ZERO
+var is_camera_focused : bool = false
+
 
 const BASIC_TOWER_SCENE = preload("res://entities/towers/basic/basic_tower.tscn")
 
+
 func _ready() -> void:
+	set_position = default_position
 	player_ui.disable_crosshair_position_calculation = true
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
@@ -32,17 +39,35 @@ func project_raycast_from_mouse_position() -> void:
 	ray_query.collide_with_bodies = true
 	
 	var result_dict := space.intersect_ray(ray_query)
+	
+	if is_camera_focused:
+		global_position = default_position
+		is_camera_focused = false
+	
 	if len(result_dict) == 0: return
 	
+	var result : Node3D = result_dict["collider"]
 	
-	
-	if result_dict["collider"] is Platform:
+	if result is Platform:
 		var platform : Platform = result_dict["collider"]
 		
-		if !platform.is_enabled or platform.has_tower: return
+		if !platform.is_enabled: return
 		
-		place_tower(result_dict["collider"] as Platform)
-		
+		if platform.has_tower:
+			focus_on_platform(platform)
+		else:
+			platform.has_tower = true
+			place_tower(result_dict["collider"] as Platform)
+	
+	
+
+func focus_on_platform(platform : Platform) -> void:
+	print("bing chilling")
+	var new_position : Vector3 = platform.global_position - Vector3(5, -5, 0)
+	
+	global_position = new_position
+	
+	is_camera_focused = true
 	
 
 func place_tower(platform : Platform) -> void:

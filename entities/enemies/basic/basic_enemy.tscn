@@ -20,6 +20,43 @@ material = SubResource("StandardMaterial3D_8pqi6")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ose1q"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
 
+[sub_resource type="Animation" id="Animation_ur1ql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitboxComponent/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ose1q"]
+resource_name = "switch_attack_state"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitboxComponent/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur1ql"]
+_data = {
+&"RESET": SubResource("Animation_ur1ql"),
+&"switch_attack_state": SubResource("Animation_ose1q")
+}
+
 [node name="BasicEnemy" type="CharacterBody3D" unique_id=887717794 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 5
@@ -30,7 +67,14 @@ debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
+[node name="HurtboxComponent" parent="." unique_id=794286188 node_paths=PackedStringArray("health_handler") instance=ExtResource("4_ur1ql")]
+collision_layer = 4
+collision_mask = 8
+health_handler = NodePath("../HealthHandler")
+
 [node name="HitboxComponent" parent="." unique_id=394290645 instance=ExtResource("2_ose1q")]
+collision_layer = 4
+collision_mask = 8
 
 [node name="CollisionShape3D" parent="HitboxComponent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.50560755)
@@ -62,5 +106,15 @@ shape = SubResource("ConvexPolygonShape3D_ose1q")
 wait_time = 0.45
 autostart = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1522276795]
+libraries/ = SubResource("AnimationLibrary_ur1ql")
+autoplay = &"switch_attack_state"
+
+[node name="ProjectileHitboxComponent" parent="." unique_id=1224992091 instance=ExtResource("2_ose1q")]
+
+[connection signal="health_drained" from="HealthHandler" to="." method="_on_health_handler_health_drained"]
+
+[editable path="HurtboxComponent"]
 [editable path="HitboxComponent"]
 [editable path="HealthHandler/HurtboxComponent"]
+[editable path="ProjectileHitboxComponent"]

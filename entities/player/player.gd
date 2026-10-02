@@ -90,7 +90,7 @@ var _speed_descrease_value : float = 0.0
 var _camera_min_vertical_angle_increase_value : float = 0.0
 
 func _ready():
-	global.player = self
+	#global.player = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	jumps_left = jump_count

@@ -45,7 +45,7 @@ collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=583022030]
+[node name="DetectionCollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=583022030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7775879, 1, -0.17097092)
 shape = SubResource("BoxShape3D_w6e6s")
 debug_color = Color(0, 1, 1, 1)

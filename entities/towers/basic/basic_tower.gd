@@ -1,11 +1,32 @@
-class_name BasicTower extends Node3D
-
-@onready var head: Marker3D = $Head
-@onready var shoot_timer: Timer = $ShootTimer
+class_name BasicTower extends Tower
 
 const BULLET_SCENE = preload("res://entities/projectiles/bullet.tscn")
 
+@onready var health_component : HealthComponent = $HealthHandler/HealthComponent
+@onready var head : Marker3D = $Head
+@onready var shoot_timer : Timer = $ShootTimer
+@onready var detection_range : float = $DetectionArea/DetectionCollisionShape3D.shape.size.z
+
 var enemy : BasicEnemy = null
+var damage : float = 1
+
+func update_damage(value : float):
+	damage += value
+	
+
+func update_detection_range(value : float):
+	detection_range += value
+	
+
+func update_attack_speed(value : float):
+	shoot_timer.stop()
+	shoot_timer.wait_time = clampf(shoot_timer.wait_time - value, 0.2, 2)
+	shoot_timer.start()
+	
+
+func update_health(value : float):
+	health_component.max_health += value
+	
 
 func _physics_process(_delta: float) -> void:
 	if enemy: head.look_at(enemy.global_position)

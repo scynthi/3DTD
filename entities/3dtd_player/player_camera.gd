@@ -1,14 +1,19 @@
-extends Camera3D
+class_name SpectatorPlayerCamera extends Camera3D
 
 @onready var player_ui: PlayerUI = $UI/PlayerUI
 @onready var default_position : Vector3 = self.global_position
 
+var fragments : int = 0
+var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed":0}
+
 var set_position : Vector3 = Vector3.ZERO
 var is_camera_focused : bool = false
 
-
 const BASIC_TOWER_SCENE = preload("res://entities/towers/basic/basic_tower.tscn")
 
+func _init() -> void:
+	global.player = self
+	
 
 func _ready() -> void:
 	set_position = default_position
@@ -62,7 +67,6 @@ func project_raycast_from_mouse_position() -> void:
 	
 
 func focus_on_platform(platform : Platform) -> void:
-	print("bing chilling")
 	var new_position : Vector3 = platform.global_position - Vector3(5, -5, 0)
 	
 	global_position = new_position

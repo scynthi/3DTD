@@ -31,6 +31,6 @@ func _recalculate_path() -> void:
 
 
 func _on_health_handler_health_drained() -> void:
-	global.player_fragments += value
+	global.player.fragments += value
 	queue_free()
 	

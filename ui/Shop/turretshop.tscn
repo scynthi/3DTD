@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b6upmpyxhxife"]
 
+[ext_resource type="Script" uid="uid://dh7jfcqt8kpq7" path="res://ui/Shop/turretshop.gd" id="1_psjpc"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_6khqe"]
 font_size = 60
 font_color = Color(0, 0, 1, 1)
@@ -19,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_psjpc")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1132150267]
 layout_mode = 0

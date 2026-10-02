@@ -2,12 +2,15 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_6khqe"]
 font_size = 60
+font_color = Color(0, 0, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_psjpc"]
 font_size = 60
+font_color = Color(1, 0.6, 0.10980392, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kqgdi"]
 font_size = 60
+font_color = Color(1, 0, 0, 1)
 
 [node name="Turretshop" type="Control" unique_id=1227217042]
 layout_mode = 3
@@ -17,13 +20,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1132150267]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 350.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer2" unique_id=1275907595]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+color = Color(1, 1, 1, 0.47058824)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1652956638]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 350.0
+alignment = 1
 
 [node name="Turret1Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1336601673]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret1Cont" unique_id=232468370]
 layout_mode = 2
@@ -37,6 +52,7 @@ text = "(Ár)"
 
 [node name="Turret2Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1768651334]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret2Cont" unique_id=1882681043]
 layout_mode = 2
@@ -50,6 +66,7 @@ text = "(Ár)"
 
 [node name="Turret3Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=611468671]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret3Cont" unique_id=275400710]
 layout_mode = 2

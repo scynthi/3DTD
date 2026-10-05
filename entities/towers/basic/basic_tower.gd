@@ -11,21 +11,21 @@ var enemy : BasicEnemy = null
 var damage : float = 1
 
 func update_damage(value : float):
-	damage += value
+	damage = value
 	
 
 func update_detection_range(value : float):
-	detection_range += value
+	detection_range = value
 	
 
 func update_attack_speed(value : float):
 	shoot_timer.stop()
-	shoot_timer.wait_time = clampf(shoot_timer.wait_time - value, 0.2, 2)
+	shoot_timer.wait_time = clampf(value, 0.2, 2)
 	shoot_timer.start()
 	
 
 func update_health(value : float):
-	health_component.max_health += value
+	health_component.max_health = value
 	
 
 func _physics_process(_delta: float) -> void:

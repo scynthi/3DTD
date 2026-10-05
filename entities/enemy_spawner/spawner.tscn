@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b5w1vxxgg38ua" path="res://entities/enemy_spawner/spawner.gd" id="1_46nq5"]
 
-[node name="Spawner" type="Node3D" unique_id=79704692]
+[sub_resource type="BoxShape3D" id="BoxShape3D_46nq5"]
+
+[node name="EnemySpawner" type="Node3D" unique_id=79704692]
 script = ExtResource("1_46nq5")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=122055284]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=406611222]
+[node name="SpawnArea" type="CollisionShape3D" parent="Area3D" unique_id=406611222]
+shape = SubResource("BoxShape3D_46nq5")

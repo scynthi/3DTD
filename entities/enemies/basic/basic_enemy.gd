@@ -1,7 +1,7 @@
-class_name BasicEnemy extends CharacterBody3D
+class_name BasicEnemy extends Enemy
 
 @export var speed : float = 2.5
-@export var value : int = 1.0
+@export var value : int = 1
 
 @onready var timer: Timer = $Timer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 
 func _recalculate_path() -> void:
 	var destination : Vector3 = nav_agent.get_next_path_position()
-	var local_destination = destination - global_position
+	var local_destination : Vector3 = destination - global_position
 	direction = local_destination.normalized()
 	
 

@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c383votm41dgv" path="res://entities/3dtd_player/player_camera.tscn" id="1_6jqax"]
 [ext_resource type="PackedScene" uid="uid://sec7kuc7mi8j" path="res://assets/models/Platform/platform.tscn" id="1_6q6tr"]
-[ext_resource type="PackedScene" uid="uid://niicsrpmo0b" path="res://entities/enemies/basic/basic_enemy.tscn" id="3_j7byj"]
+[ext_resource type="Script" uid="uid://clrjse233gs4e" path="res://trenchbroom/maps/default_map.gd" id="1_pa52q"]
 [ext_resource type="PackedScene" uid="uid://cbl80l6a2voyq" path="res://entities/towers/nexus/nexus.tscn" id="4_x61gs"]
+[ext_resource type="PackedScene" uid="uid://8bgctk08nd5j" path="res://entities/enemy_spawner/spawner.tscn" id="5_pa52q"]
 
 [sub_resource type="Gradient" id="Gradient_dwbse"]
 offsets = PackedFloat32Array(0.535826, 1)
@@ -45,7 +46,11 @@ agent_radius = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jqax"]
 albedo_color = Color(0.09411765, 0.09411765, 0, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pa52q"]
+size = Vector3(12.75215, 1, 7.5922546)
+
 [node name="World" type="Node3D" unique_id=740222304]
+script = ExtResource("1_pa52q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1799798538]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.946566, 0)
@@ -243,17 +248,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.51, 0)
 [node name="Platform5" parent="Map/NavigationRegion3D/Platforms/Row6" unique_id=1045952770 instance=ExtResource("1_6q6tr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.51, 0)
 
-[node name="Map2" type="CSGBox3D" parent="Map/NavigationRegion3D" unique_id=1694308120]
+[node name="FrontLineFloor" type="CSGBox3D" parent="Map/NavigationRegion3D" unique_id=1694308120]
 use_collision = true
 size = Vector3(30, 1, 60)
 material = SubResource("StandardMaterial3D_6jqax")
 
-[node name="Camera3D" parent="." unique_id=1381312223 instance=ExtResource("1_6jqax")]
+[node name="PlayerCamera" parent="." unique_id=1381312223 instance=ExtResource("1_6jqax")]
 transform = Transform3D(-4.371139e-08, 0.54463905, -0.83867055, 0, 0.83867055, 0.54463905, 1, 2.380693e-08, -3.6659454e-08, -30.227, 25, 0)
 fov = 80.0
 
-[node name="BasicEnemy" parent="." unique_id=887717794 instance=ExtResource("3_j7byj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -28.71838)
-
 [node name="Nexus" parent="." unique_id=1245046979 instance=ExtResource("4_x61gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 26)
+
+[node name="EnemySpawner" parent="." unique_id=79704692 node_paths=PackedStringArray("map_floor") instance=ExtResource("5_pa52q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46819, 0.4912426, -29.51841)
+map_floor = NodePath("../Map/NavigationRegion3D/FrontLineFloor")
+
+[node name="SpawnArea" parent="EnemySpawner/Area3D" parent_id_path=PackedInt32Array(79704692, 122055284) index="0" unique_id=406611222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.667712, 0, 5.5646515)
+shape = SubResource("BoxShape3D_pa52q")
+debug_color = Color(0.9529412, 0, 1, 1)
+
+[editable path="EnemySpawner"]

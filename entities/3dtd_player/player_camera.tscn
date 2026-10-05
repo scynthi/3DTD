@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://du82nk17tcft1" path="res://entities/3dtd_player/player_camera.gd" id="1_xp13a"]
 [ext_resource type="Script" uid="uid://cgwh7vl8jacuu" path="res://entities/3dtd_player/ui.gd" id="2_ves7s"]
 
-[node name="Camera3D" type="Camera3D" unique_id=1381312223]
+[node name="PlayerCamera" type="Camera3D" unique_id=1381312223]
 script = ExtResource("1_xp13a")
 
 [node name="UI" type="Control" parent="." unique_id=1652973927]

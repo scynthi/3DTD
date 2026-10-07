@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
 		enemy = body
+		if enemy.health_handler.health_drained.is_connected(reset_target): return
 		enemy.health_handler.health_drained.connect(reset_target)
 		
 	
@@ -66,9 +67,9 @@ func reset_target() -> void:
 func _on_shoot_timer_timeout() -> void:
 	if enemy:
 		var bullet : Bullet = BULLET_SCENE.instantiate()
+		get_tree().current_scene.add_child(bullet)
 		@warning_ignore("narrowing_conversion")
 		bullet.update_damage(damage)
-		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = head.global_position
 		
 		var calculated_bullet_transform  : Transform3D = bullet.transform

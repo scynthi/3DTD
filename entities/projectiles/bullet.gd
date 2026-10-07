@@ -1,7 +1,7 @@
 class_name Bullet extends CharacterBody3D
 
 @export var speed : float = 50.0
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
+@export var hitbox_component: HitboxComponent
 
 func _physics_process(_delta: float) -> void:
 	velocity = transform.basis * Vector3(0, 0, speed * -1.0)

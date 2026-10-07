@@ -15,3 +15,4 @@ func update_tower_property():
 		tower.update_health(tower_data.health)
 		
 	
+	

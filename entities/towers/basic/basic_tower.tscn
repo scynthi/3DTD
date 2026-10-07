@@ -19,7 +19,7 @@ size = Vector3(11, 1.983, 11)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
 size = Vector3(1.5, 2.540039, 1.0620117)
 
-[node name="BasicTower" type="Node3D" unique_id=281287575]
+[node name="BasicTower" type="Node3D" unique_id=281287575 groups=["towers"]]
 script = ExtResource("1_p0drk")
 default_stats = SubResource("Resource_pa52q")
 

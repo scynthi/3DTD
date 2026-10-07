@@ -3,9 +3,10 @@ class_name GeneralShop extends Control
 @onready var damage_button: Button = $VBoxContainer/DamageContainer/damageButton
 var damage_Level : int = 0
 var damage_Price : int = 10
+@onready var damage_label: Label = $VBoxContainer/DamageContainer/DamageLabel
 
 @onready var attack_speed_button: Button = $VBoxContainer/AttackSpeedContainer/attackSpeedButton
-var attackspeed_Level : int = 0
+var attackspeed_Level : float = 0
 var attackspeed_Price : int = 10
 
 @onready var attack_range_button: Button = $VBoxContainer/AttackRangeContainer/attackRangeButton
@@ -31,9 +32,18 @@ func _on_damage_button_pressed() -> void:
 		damage_Level+=1
 		damage_Price = 10+damage_Level
 		damage_button.text = str(damage_Price)
+		global.tower_data.damage += 1
+		global.update_tower_property()
+		damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"\nNext "+str(global.tower_data.damage+1)
 	
 	
 
 
 func _on_attack_speed_button_pressed() -> void:
-	pass # Replace with function body.
+	if(attackspeed_Price<global.player.fragments):
+		global.player.fragments-=attackspeed_Price
+		attackspeed_Level+=1
+		attackspeed_Price = 10+attackspeed_Level
+		attack_speed_button.text = str(attackspeed_Price)
+		global.tower_data.attackspeed -= 0.02
+		global.update_tower_property()

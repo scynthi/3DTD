@@ -7,7 +7,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 
-
 func _on_timer_timeout() -> void:
+	queue_free()
+	
+
+func _on_hurtbox_component_area_entered(_area: Area3D) -> void:
 	queue_free()
 	

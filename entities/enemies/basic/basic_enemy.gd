@@ -12,7 +12,6 @@ func _ready() -> void:
 	nav_agent.target_position = global.nexus.global_position
 	timer.start()
 	timer.timeout.connect(_recalculate_path)
-	_recalculate_path()
 	
 
 func _physics_process(_delta: float) -> void:

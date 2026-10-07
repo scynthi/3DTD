@@ -57,10 +57,13 @@ _data = {
 &"switch_attack_state": SubResource("Animation_ose1q")
 }
 
-[node name="BasicEnemy" type="CharacterBody3D" unique_id=887717794 groups=["enemy"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ose1q"]
+
+[node name="BasicEnemy" type="CharacterBody3D" unique_id=887717794 node_paths=PackedStringArray("health_handler") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_8d6cb")
+health_handler = NodePath("HealthHandler")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1823911225]
 debug_enabled = true
@@ -111,6 +114,12 @@ libraries/ = SubResource("AnimationLibrary_ur1ql")
 autoplay = &"switch_attack_state"
 
 [node name="ProjectileHitboxComponent" parent="." unique_id=1224992091 instance=ExtResource("2_ose1q")]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape3D" parent="ProjectileHitboxComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ose1q")
 
 [connection signal="health_drained" from="HealthHandler" to="." method="_on_health_handler_health_drained"]
 

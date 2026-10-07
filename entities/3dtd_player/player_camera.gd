@@ -3,10 +3,9 @@ class_name SpectatorPlayerCamera extends Camera3D
 @onready var player_ui: PlayerUI = $UI/PlayerUI
 @onready var default_position : Vector3 = self.global_position
 
-var fragments : int = 0
+var fragments : int = 999999
 var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed":0}
 
-var set_position : Vector3 = Vector3.ZERO
 var is_camera_focused : bool = false
 
 const BASIC_TOWER_SCENE = preload("res://entities/towers/basic/basic_tower.tscn")
@@ -16,7 +15,6 @@ func _init() -> void:
 	
 
 func _ready() -> void:
-	set_position = default_position
 	player_ui.disable_crosshair_position_calculation = true
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	

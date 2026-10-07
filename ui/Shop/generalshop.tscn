@@ -63,7 +63,7 @@ vertical_alignment = 1
 [node name="damageButton" type="Button" parent="VBoxContainer/DamageContainer" unique_id=1004733894]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
-text = "(Ár)"
+text = "10"
 
 [node name="AttackSpeedContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1015422739]
 custom_minimum_size = Vector2(440, 130)
@@ -74,8 +74,8 @@ custom_minimum_size = Vector2(300, 130)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0gblk")
 text = "Attack Speed
-Current (1.0/s)
-Next (1.1/s)"
+Current 1.0s
+Next 0.98s"
 label_settings = SubResource("LabelSettings_hlspv")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -83,7 +83,7 @@ vertical_alignment = 1
 [node name="attackSpeedButton" type="Button" parent="VBoxContainer/AttackSpeedContainer" unique_id=1562666796]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
-text = "(Ár)"
+text = "10"
 
 [node name="AttackRangeContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=782048383]
 custom_minimum_size = Vector2(440, 130)
@@ -94,8 +94,8 @@ custom_minimum_size = Vector2(300, 130)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0gblk")
 text = "Attack Range
-Current (10m)
-Next (11m)"
+Current 10m
+Next 11m"
 label_settings = SubResource("LabelSettings_21i75")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -103,7 +103,7 @@ vertical_alignment = 1
 [node name="attackRangeButton" type="Button" parent="VBoxContainer/AttackRangeContainer" unique_id=345147423]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
-text = "(Ár)"
+text = "10"
 
 [node name="HPContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1584509780]
 custom_minimum_size = Vector2(440, 130)
@@ -114,8 +114,8 @@ custom_minimum_size = Vector2(300, 130)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0gblk")
 text = "HP
-Current (10)
-Next (11)"
+Current 10
+Next 11"
 label_settings = SubResource("LabelSettings_i4qga")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -123,7 +123,9 @@ vertical_alignment = 1
 [node name="HPButton" type="Button" parent="VBoxContainer/HPContainer" unique_id=1561584849]
 custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
-text = "(Ár)"
+text = "10"
 
 [connection signal="pressed" from="VBoxContainer/DamageContainer/damageButton" to="." method="_on_damage_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/AttackSpeedContainer/attackSpeedButton" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/AttackRangeContainer/attackRangeButton" to="." method="_on_attack_range_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HPContainer/HPButton" to="." method="_on_hp_button_pressed"]

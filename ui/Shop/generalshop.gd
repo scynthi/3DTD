@@ -30,11 +30,11 @@ func _on_damage_button_pressed() -> void:
 	if(damage_Price<global.player.fragments):
 		global.player.fragments-=damage_Price
 		damage_Level+=1
-		damage_Price = 10+damage_Level
+		damage_Price = 10+damage_Level*5
 		damage_button.text = str(damage_Price)
 		global.tower_data.damage += 1
 		global.update_tower_property()
-		damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"\nNext "+str(global.tower_data.damage+1)
+		damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"/shots\nNext "+str(global.tower_data.damage+1) + "/shots"
 	
 	
 
@@ -43,7 +43,8 @@ func _on_attack_speed_button_pressed() -> void:
 	if(attackspeed_Price<global.player.fragments):
 		global.player.fragments-=attackspeed_Price
 		attackspeed_Level+=1
-		attackspeed_Price = 10+attackspeed_Level
+		attackspeed_Price = 10+attackspeed_Level*5
 		attack_speed_button.text = str(attackspeed_Price)
 		global.tower_data.attackspeed -= 0.02
 		global.update_tower_property()
+		damage_label.text = "Attack Speed\nCurrent "+str(global.tower_data.damage)+"\nNext "+str(global.tower_data.damage+1)

@@ -66,6 +66,8 @@ func reset_target() -> void:
 func _on_shoot_timer_timeout() -> void:
 	if enemy:
 		var bullet : Bullet = BULLET_SCENE.instantiate()
+		@warning_ignore("narrowing_conversion")
+		bullet.update_damage(damage)
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = head.global_position
 		

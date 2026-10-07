@@ -19,7 +19,6 @@ func spawn_enemies() -> void:
 		
 	
 
-
 func randomize_enemy_spawn_position() -> Vector3:
 	var spawn_area_global_pos : Vector3 = spawn_area.global_position
 	var spawn_area_size : Vector3 = spawn_area.shape.size

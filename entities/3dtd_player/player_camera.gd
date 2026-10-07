@@ -29,6 +29,10 @@ func _physics_process(_delta: float) -> void:
 	
 
 func project_raycast_from_mouse_position() -> void:
+	if is_camera_focused:
+		global_position = default_position
+		is_camera_focused = false
+	
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var ray_length : int = 1000
 	var from : Vector3 = self.project_ray_origin(mouse_pos)
@@ -42,10 +46,6 @@ func project_raycast_from_mouse_position() -> void:
 	ray_query.collide_with_bodies = true
 	
 	var result_dict := space.intersect_ray(ray_query)
-	
-	if is_camera_focused:
-		global_position = default_position
-		is_camera_focused = false
 	
 	if len(result_dict) == 0: return
 	
@@ -61,7 +61,8 @@ func project_raycast_from_mouse_position() -> void:
 		else:
 			platform.has_tower = true
 			place_tower(result_dict["collider"] as Platform)
-	
+			
+		
 	
 
 func focus_on_platform(platform : Platform) -> void:

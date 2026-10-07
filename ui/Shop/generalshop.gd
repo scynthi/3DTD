@@ -14,18 +14,6 @@ var attackrange_Level : int = 0
 var attackrange_Price : int = 10
 
 
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_damage_button_pressed() -> void:
 	if(damage_Price<global.player.fragments):
 		global.player.fragments-=damage_Price
@@ -43,6 +31,7 @@ func _on_attack_speed_button_pressed() -> void:
 	if(attackspeed_Price<global.player.fragments):
 		global.player.fragments-=attackspeed_Price
 		attackspeed_Level+=1
+		@warning_ignore("narrowing_conversion")
 		attackspeed_Price = 10+attackspeed_Level*5
 		attack_speed_button.text = str(attackspeed_Price)
 		global.tower_data.attackspeed -= 0.02

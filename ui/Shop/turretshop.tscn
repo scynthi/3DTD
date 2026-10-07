@@ -44,39 +44,49 @@ layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret1Cont" unique_id=232468370]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "(Turret 1)"
+text = "Simple"
 label_settings = SubResource("LabelSettings_6khqe")
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/Turret1Cont" unique_id=1625734739]
+[node name="BasicTurretButton" type="Button" parent="VBoxContainer/Turret1Cont" unique_id=1625734739]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "(Ár)"
+text = "10"
 
 [node name="Turret2Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1768651334]
 layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret2Cont" unique_id=1882681043]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "(Turret 2)"
+text = "Advanced"
 label_settings = SubResource("LabelSettings_psjpc")
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/Turret2Cont" unique_id=1118532669]
+[node name="AdvancedTurretButton" type="Button" parent="VBoxContainer/Turret2Cont" unique_id=1118532669]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "(Ár)"
+text = "20"
 
 [node name="Turret3Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=611468671]
 layout_mode = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Turret3Cont" unique_id=275400710]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "(Turret 3)"
+text = "Maxed"
 label_settings = SubResource("LabelSettings_kqgdi")
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/Turret3Cont" unique_id=660701920]
+[node name="MaxedTurretButton" type="Button" parent="VBoxContainer/Turret3Cont" unique_id=660701920]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "(Ár)"
+text = "30"
+
+[connection signal="pressed" from="VBoxContainer/Turret1Cont/BasicTurretButton" to="." method="_on_basis_turret_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Turret2Cont/AdvancedTurretButton" to="." method="_on_advanced_turret_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Turret3Cont/MaxedTurretButton" to="." method="_on_maxed_turret_button_pressed"]

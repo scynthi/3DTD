@@ -9,19 +9,17 @@ var amount_dict : Dictionary[String, int] = {"basic": 10, "advanced": 0, "maxed"
 
 func spawn_enemies() -> void:
 	for key : String in amount_dict.keys():
-		var current_enemy_scene : PackedScene = enemy_scenes[amount_dict.keys().find(key)]
-		
 		if amount_dict[key] <= 0: continue
 		
+		var current_enemy_scene : PackedScene = enemy_scenes[amount_dict.keys().find(key)]
+		
 		for amount in range(amount_dict[key]):
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.5).timeout
 			
 			var current_enemy : Enemy = current_enemy_scene.instantiate()
 			
-			current_enemy.process_mode = Node.PROCESS_MODE_DISABLED
 			get_tree().current_scene.add_child(current_enemy)
 			current_enemy.global_position = randomize_enemy_spawn_position()
-			current_enemy.process_mode = Node.PROCESS_MODE_ALWAYS
 			
 		
 	

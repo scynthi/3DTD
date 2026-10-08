@@ -24,7 +24,7 @@ func load_map(map_id : int) -> void:
 	if is_busy: return
 	is_busy = true
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	get_tree().change_scene_to_file(_ui_scenes_dict.get(ui_scenes.loading_screen))
 	
@@ -38,7 +38,7 @@ func load_ui_scene(ui_scene_id: int, change_scene: bool = true, pause_enabled : 
 	if is_busy: return
 	is_busy = true
 	_map = ""
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	var ui_scene : PackedScene = load(_ui_scenes_dict.get(ui_scene_id))
 	if !ui_scene_id: return print("UI scene with ID "+str(ui_scene_id)+" has not been defined in _ui_scenes_dict.")

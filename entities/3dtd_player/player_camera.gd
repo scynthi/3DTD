@@ -36,6 +36,8 @@ func project_raycast_from_mouse_position() -> void:
 		global_position = default_position
 		is_camera_focused = false
 	
+	if current_platform: return
+	
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var ray_length : int = 1000
 	var from : Vector3 = self.project_ray_origin(mouse_pos)
@@ -74,16 +76,15 @@ func focus_on_platform(platform : Platform) -> void:
 	var new_position : Vector3 = platform.global_position - Vector3(5, -5, 0)
 	
 	global_position = new_position
-	
 	is_camera_focused = true
 	
 
 func place_tower() -> void:
 	var tower_instance : Tower = null
 	
-	if (bought_towers["basic"] > 0):
+	if (bought_towers["simple"] > 0):
 		tower_instance = BASIC_TOWER_SCENE.instantiate()
-		bought_towers["basic"] -= 1
+		bought_towers["simple"] -= 1
 	elif (bought_towers["advanced"] > 0):
 		tower_instance = BASIC_TOWER_SCENE.instantiate()
 		bought_towers["advanced"] -= 1
@@ -97,4 +98,5 @@ func place_tower() -> void:
 	get_tree().current_scene.add_child(tower_instance)
 	tower_instance.global_position = current_platform.global_position
 	current_platform.has_tower = true
+	current_platform = null
 	

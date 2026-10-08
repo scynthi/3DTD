@@ -1,21 +1,28 @@
 class_name EnemySpawner extends Node3D
 
 @onready var spawn_area : CollisionShape3D = $Area3D/SpawnArea
-const ENEMY_SCENE : PackedScene = preload("res://entities/enemies/basic/basic_enemy.tscn")
 
-var amount : int = 10
+
+@onready var enemy_scenes : Array[PackedScene] = [preload("res://entities/enemies/basic/basic_enemy.tscn")]
+var amount_dict : Dictionary[String, int] = {"basic": 10, "advanced": 0, "maxed": 0}
 
 
 func spawn_enemies() -> void:
-	for i : int in range(amount):
-		var current_enemy : Enemy = ENEMY_SCENE.instantiate()
+	for key : String in amount_dict.keys():
+		var current_enemy_scene : PackedScene = enemy_scenes[amount_dict.keys().find(key)]
 		
-		await get_tree().create_timer(0.5).timeout
+		if amount_dict[key] <= 0: continue
 		
-		current_enemy.process_mode = Node.PROCESS_MODE_DISABLED
-		get_tree().current_scene.add_child(current_enemy)
-		current_enemy.global_position = randomize_enemy_spawn_position()
-		current_enemy.process_mode = Node.PROCESS_MODE_ALWAYS
+		for amount in range(amount_dict[key]):
+			await get_tree().create_timer(0.2).timeout
+			
+			var current_enemy : Enemy = current_enemy_scene.instantiate()
+			
+			current_enemy.process_mode = Node.PROCESS_MODE_DISABLED
+			get_tree().current_scene.add_child(current_enemy)
+			current_enemy.global_position = randomize_enemy_spawn_position()
+			current_enemy.process_mode = Node.PROCESS_MODE_ALWAYS
+			
 		
 	
 

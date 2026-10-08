@@ -1,21 +1,23 @@
 class_name BasicEnemy extends Enemy
 
-@export var speed : float = 2.5
-@export var value : int = 1
-
 @onready var timer: Timer = $Timer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
+@onready var health_component: HealthComponent = $HealthHandler/HealthComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 var direction : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
+	health_component.max_health = enemy_stats.health
+	hitbox_component.damage = enemy_stats.damage
 	nav_agent.target_position = global.nexus.global_position
+	
 	timer.start()
 	timer.timeout.connect(_recalculate_path)
 	
 
 func _physics_process(_delta: float) -> void:
-	velocity = direction * speed
+	velocity = direction * enemy_stats.speed
 	
 	if global.nexus: look_at(global.nexus.global_position)
 	
@@ -30,6 +32,6 @@ func _recalculate_path() -> void:
 
 
 func _on_health_handler_health_drained() -> void:
-	global.player.fragments += value
+	global.player.fragments += enemy_stats.value
 	queue_free()
 	

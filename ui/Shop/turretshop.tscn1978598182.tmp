@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://b6upmpyxhxife"]
+
+[ext_resource type="Script" uid="uid://dh7jfcqt8kpq7" path="res://ui/Shop/turretshop.gd" id="1_psjpc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6khqe"]
+font_size = 30
+font_color = Color(0, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_psjpc"]
+font_size = 30
+font_color = Color(1, 0.6, 0.10980392, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqgdi"]
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[node name="Turretshop" type="Control" unique_id=1227217042]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_psjpc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1132150267]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 163.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer2" unique_id=1275907595]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.8235294, 0, 1, 0.4117647)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1652956638]
+layout_mode = 0
+offset_right = 202.0
+offset_bottom = 162.0
+alignment = 1
+
+[node name="Turret1Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1336601673]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret1Cont" unique_id=232468370]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+text = "Simple"
+label_settings = SubResource("LabelSettings_6khqe")
+horizontal_alignment = 1
+
+[node name="BasicTurretButton" type="Button" parent="VBoxContainer/Turret1Cont" unique_id=1625734739]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="Turret2Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=1768651334]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret2Cont" unique_id=1882681043]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+text = "Advanced"
+label_settings = SubResource("LabelSettings_psjpc")
+horizontal_alignment = 1
+
+[node name="AdvancedTurretButton" type="Button" parent="VBoxContainer/Turret2Cont" unique_id=1118532669]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "50"
+
+[node name="Turret3Cont" type="HBoxContainer" parent="VBoxContainer" unique_id=611468671]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Turret3Cont" unique_id=275400710]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+text = "Maxed"
+label_settings = SubResource("LabelSettings_kqgdi")
+horizontal_alignment = 1
+
+[node name="MaxedTurretButton" type="Button" parent="VBoxContainer/Turret3Cont" unique_id=660701920]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "90"
+
+[connection signal="pressed" from="VBoxContainer/Turret1Cont/BasicTurretButton" to="." method="_on_basis_turret_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Turret2Cont/AdvancedTurretButton" to="." method="_on_advanced_turret_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Turret3Cont/MaxedTurretButton" to="." method="_on_maxed_turret_button_pressed"]

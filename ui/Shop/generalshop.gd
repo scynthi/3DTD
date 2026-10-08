@@ -9,6 +9,8 @@ var damage_Price : int = 10
 var attackspeed_Level : int = 0
 var attackspeed_Price : int = 10
 @onready var attack_speed_label: Label = $VBoxContainer/AttackSpeedContainer/AttackSpeedLabel
+@onready var attack_speed_container: HBoxContainer = $VBoxContainer/AttackSpeedContainer
+
 
 @onready var attack_range_button: Button = $VBoxContainer/AttackRangeContainer/attackRangeButton
 var attackrange_Level : int = 0
@@ -25,6 +27,10 @@ func _ready() -> void:
 	attack_speed_label.text = "Attack Speed\nCurrent "+str(global.tower_data.attack_speed)+"s\nNext "+str(global.tower_data.attack_speed-0.02)+"s"
 	attack_range_label.text = "Attack Range\nCurrent "+str(global.tower_data.detection_range)+"m\nNext "+str(global.tower_data.detection_range+1)+"m"
 	hp_label.text = "HP\nCurrent "+str(global.tower_data.detection_range)+"\nNext "+str(global.tower_data.detection_range+1)
+	
+
+func _process(_delta: float) -> void:
+	global.update_tower_property()
 
 
 func _on_damage_button_pressed() -> void:
@@ -34,10 +40,7 @@ func _on_damage_button_pressed() -> void:
 		damage_Price = 10+damage_Level
 		damage_button.text = str(damage_Price)
 		global.tower_data.damage += 1
-		global.update_tower_property()
 		damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"/shots\nNext "+str(global.tower_data.damage+1) + "/shots"
-		
-	
 
 
 func _on_attack_speed_button_pressed() -> void:
@@ -47,10 +50,9 @@ func _on_attack_speed_button_pressed() -> void:
 		attackspeed_Price = 10+attackspeed_Level
 		attack_speed_button.text = str(attackspeed_Price)
 		global.tower_data.attack_speed -= 0.02
-		global.update_tower_property()
 		attack_speed_label.text = "Attack Speed\nCurrent "+str(global.tower_data.attack_speed)+"s\nNext "+str(global.tower_data.attack_speed-0.02)+"s"
-		if(global.tower_data.attack_speed == 0.02):
-			attack_speed_label.hide()
+		if(global.tower_data.attack_speed <= 0.03):
+			attack_speed_container.hide()
 
 
 func _on_attack_range_button_pressed() -> void:
@@ -60,7 +62,6 @@ func _on_attack_range_button_pressed() -> void:
 		attackrange_Price = 10+attackrange_Price
 		attack_range_button.text = str(attackspeed_Price)
 		global.tower_data.detection_range += 1
-		global.update_tower_property()
 		attack_range_label.text = "Attack Range\nCurrent "+str(global.tower_data.detection_range)+"m\nNext "+str(global.tower_data.detection_range+1)+"m"
 
 
@@ -71,5 +72,4 @@ func _on_hp_button_pressed() -> void:
 		hp_Price = 10+attackrange_Price
 		hp_button.text = str(attackspeed_Price)
 		global.tower_data.health += 1
-		global.update_tower_property()
 		hp_label.text = "HP\nCurrent "+str(global.tower_data.detection_range)+"\nNext "+str(global.tower_data.detection_range+1)

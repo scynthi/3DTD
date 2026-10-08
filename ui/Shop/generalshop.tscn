@@ -42,6 +42,7 @@ offset_right = -1467.0
 offset_bottom = -7.5200195
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 2
 
 [node name="DamageContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1152900452]
 custom_minimum_size = Vector2(500, 130)

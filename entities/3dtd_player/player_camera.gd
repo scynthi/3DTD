@@ -8,7 +8,8 @@ var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed"
 
 var is_camera_focused : bool = false
 
-const BASIC_TOWER_SCENE = preload("res://entities/towers/basic/basic_tower.tscn")
+const BASIC_TOWER_SCENE : PackedScene = preload("res://entities/towers/basic/basic_tower.tscn")
+const TOWER_UI : PackedScene = preload("res://ui/Shop/turretshop.tscn")
 
 func _init() -> void:
 	global.player = self

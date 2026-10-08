@@ -20,6 +20,13 @@ var hp_Level : int = 0
 var hp_Price : int = 10
 @onready var hp_label: Label = $VBoxContainer/HPContainer/HPLabel
 
+func _ready() -> void:
+	damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"/shots\nNext "+str(global.tower_data.damage+1) + "/shots"
+	attack_speed_label.text = "Attack Speed\nCurrent "+str(global.tower_data.attack_speed)+"s\nNext "+str(global.tower_data.attack_speed-0.02)+"s"
+	attack_range_label.text = "Attack Range\nCurrent "+str(global.tower_data.detection_range)+"m\nNext "+str(global.tower_data.detection_range+1)+"m"
+	hp_label.text = "HP\nCurrent "+str(global.tower_data.detection_range)+"\nNext "+str(global.tower_data.detection_range+1)
+
+
 func _on_damage_button_pressed() -> void:
 	if(damage_Price<global.player.fragments):
 		global.player.fragments-=damage_Price
@@ -29,7 +36,7 @@ func _on_damage_button_pressed() -> void:
 		global.tower_data.damage += 1
 		global.update_tower_property()
 		damage_label.text = "Damage\nCurrent "+str(global.tower_data.damage)+"/shots\nNext "+str(global.tower_data.damage+1) + "/shots"
-	
+		
 	
 
 
@@ -42,6 +49,8 @@ func _on_attack_speed_button_pressed() -> void:
 		global.tower_data.attack_speed -= 0.02
 		global.update_tower_property()
 		attack_speed_label.text = "Attack Speed\nCurrent "+str(global.tower_data.attack_speed)+"s\nNext "+str(global.tower_data.attack_speed-0.02)+"s"
+		if(global.tower_data.attack_speed == 0.02):
+			attack_speed_label.hide()
 
 
 func _on_attack_range_button_pressed() -> void:

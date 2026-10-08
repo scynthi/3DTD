@@ -8,7 +8,6 @@ const BULLET_SCENE = preload("res://entities/projectiles/bullet.tscn")
 @onready var detection_range : float = $DetectionArea/DetectionCollisionShape3D.shape.size.z
 @onready var detection_range_collision_shape : CollisionShape3D = $DetectionArea/DetectionCollisionShape3D
 
-
 @export var default_stats : TowerData
 
 var enemy : Enemy = null

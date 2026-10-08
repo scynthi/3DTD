@@ -5,13 +5,14 @@ class_name TurretShop extends Control
 func ShowTurrets(level : int) -> void:
 	for i in range(0, level):
 		lista[i].hide()
-
+	
 
 func _on_basis_turret_button_pressed() -> void:
 	if(global.player.fragments >= 10):
 		global.player.fragments -= 10
 		global.player.bought_towers["simple"]+=1
 		queue_free()
+
 
 
 func _on_advanced_turret_button_pressed() -> void:
@@ -21,8 +22,10 @@ func _on_advanced_turret_button_pressed() -> void:
 		queue_free()
 
 
+
 func _on_maxed_turret_button_pressed() -> void:
 	if(global.player.fragments >= 90):
 		global.player.fragments -= 90
 		global.player.bought_towers["maxed"]+=1
 		queue_free()
+		

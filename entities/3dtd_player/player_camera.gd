@@ -9,7 +9,9 @@ var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed"
 var is_camera_focused : bool = false
 
 const BASIC_TOWER_SCENE : PackedScene = preload("res://entities/towers/basic/basic_tower.tscn")
-const TOWER_UI : PackedScene = preload("res://ui/Shop/turretshop.tscn")
+const TOWER_SHOP : PackedScene = preload("res://ui/Shop/turretshop.tscn")
+
+var current_platform : Platform = null
 
 func _init() -> void:
 	global.player = self
@@ -53,17 +55,19 @@ func project_raycast_from_mouse_position() -> void:
 	var result : Node3D = result_dict["collider"]
 	
 	if result is Platform:
-		var platform : Platform = result_dict["collider"]
+		current_platform = result_dict["collider"]
 		
-		if !platform.is_enabled: return
+		if !current_platform.is_enabled: return
 		
-		if platform.has_tower:
-			focus_on_platform(platform)
+		if current_platform.has_tower:
+			focus_on_platform(current_platform)
 		else:
-			platform.has_tower = true
-			place_tower(result_dict["collider"] as Platform)
+			var tower_ui : TurretShop = TOWER_SHOP.instantiate()
+			get_tree().current_scene.add_child(tower_ui)
+			tower_ui.position = get_viewport().get_mouse_position() - Vector2(40, 40)
 			
-		
+	elif result is Tower:
+		pass
 	
 
 func focus_on_platform(platform : Platform) -> void:
@@ -74,11 +78,23 @@ func focus_on_platform(platform : Platform) -> void:
 	is_camera_focused = true
 	
 
-func place_tower(platform : Platform) -> void:
-	var tower_instance : BasicTower = BASIC_TOWER_SCENE.instantiate()
+func place_tower() -> void:
+	var tower_instance : Tower = null
+	
+	if (bought_towers["basic"] > 0):
+		tower_instance = BASIC_TOWER_SCENE.instantiate()
+		bought_towers["basic"] -= 1
+	elif (bought_towers["advanced"] > 0):
+		tower_instance = BASIC_TOWER_SCENE.instantiate()
+		bought_towers["advanced"] -= 1
+	elif (bought_towers["maxed"] > 0):
+		tower_instance = BASIC_TOWER_SCENE.instantiate()
+		bought_towers["maxed"] -= 1
+	else:
+		return
+		
 	
 	get_tree().current_scene.add_child(tower_instance)
-	tower_instance.global_position = platform.global_position
-	
-	
+	tower_instance.global_position = current_platform.global_position
+	current_platform.has_tower = true
 	

@@ -24,9 +24,7 @@ func update_detection_range(value : float):
 	
 
 func update_attack_speed(value : float):
-	shoot_timer.stop()
 	shoot_timer.wait_time = clampf(value, 0.2, 1)
-	shoot_timer.start()
 	
 
 func update_health(value : float):

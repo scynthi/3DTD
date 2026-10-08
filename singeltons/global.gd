@@ -5,6 +5,8 @@ var nexus : Nexus = null
 
 var tower_data : TowerData = TowerData.new()
 
+var infinite_fragment : bool = false
+
 func update_tower_property():
 	var towers := get_tree().get_nodes_in_group("towers")
 	

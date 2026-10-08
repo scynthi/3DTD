@@ -11,7 +11,6 @@ var attackspeed_Price : int = 10
 @onready var attack_speed_label: Label = $VBoxContainer/AttackSpeedContainer/AttackSpeedLabel
 @onready var attack_speed_container: HBoxContainer = $VBoxContainer/AttackSpeedContainer
 
-
 @onready var attack_range_button: Button = $VBoxContainer/AttackRangeContainer/attackRangeButton
 var attackrange_Level : int = 0
 var attackrange_Price : int = 10
@@ -59,8 +58,7 @@ func _on_attack_range_button_pressed() -> void:
 	if(attackrange_Price<global.player.fragments):
 		global.player.fragments-=attackrange_Price
 		attackrange_Price+=5
-		attackrange_Price = 10+attackrange_Price
-		attack_range_button.text = str(attackspeed_Price)
+		attack_range_button.text = str(attackrange_Price)
 		global.tower_data.detection_range += 1
 		attack_range_label.text = "Attack Range\nCurrent "+str(global.tower_data.detection_range)+"m\nNext "+str(global.tower_data.detection_range+1)+"m"
 
@@ -69,7 +67,6 @@ func _on_hp_button_pressed() -> void:
 	if(attackrange_Price<global.player.fragments):
 		global.player.fragments-=hp_Price
 		hp_Price+=5
-		hp_Price = 10+attackrange_Price
-		hp_button.text = str(attackspeed_Price)
+		hp_button.text = str(hp_Price)
 		global.tower_data.health += 1
-		hp_label.text = "HP\nCurrent "+str(global.tower_data.detection_range)+"\nNext "+str(global.tower_data.detection_range+1)
+		hp_label.text = "HP\nCurrent "+str(global.tower_data.health)+"\nNext "+str(global.tower_data.health+1)

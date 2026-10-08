@@ -27,31 +27,33 @@ func update_attack_speed(value : float):
 	
 
 func update_health(value : float):
-	health_component.max_health =default_stats.health + value
+	health_component.max_health = default_stats.health + value
 	
 
 func find_new_target(delta : float) -> void:
-	if enemy: return
-	
 	detection_range_collision_shape.shape.size = lerp(detection_range_collision_shape.shape.size, Vector3(global.tower_data.detection_range + default_stats.detection_range, 1.983, global.tower_data.detection_range + default_stats.detection_range), delta * 10)
 	
 
 func _physics_process(delta: float) -> void:
 	if enemy: head.look_at(enemy.global_position + Vector3(0, 0.2, 0))
-	find_new_target(delta)
+	else: find_new_target(delta)
 	
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
+		if enemy: return
+		detection_range_collision_shape.shape.size = Vector3(global.tower_data.detection_range + default_stats.detection_range, 1.983, global.tower_data.detection_range + default_stats.detection_range)
 		enemy = body
 		if enemy.health_handler.health_drained.is_connected(reset_target): return
 		enemy.health_handler.health_drained.connect(reset_target)
 		
 	
 
-func _on_area_3d_body_exited(_body: Node3D) -> void:
-	reset_target()
-	head.rotation = Vector3.ZERO
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body is Enemy:
+		if body != enemy: return
+		reset_target()
+		head.rotation = Vector3.ZERO
 	
 
 func reset_target() -> void:

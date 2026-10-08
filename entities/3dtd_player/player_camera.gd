@@ -35,8 +35,10 @@ func project_raycast_from_mouse_position() -> void:
 	if is_camera_focused:
 		global_position = default_position
 		is_camera_focused = false
+		current_platform = null
 	
 	if current_platform: return
+	
 	
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var ray_length : int = 1000

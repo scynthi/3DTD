@@ -4,12 +4,11 @@ extends Node3D
 @onready var nexus: Nexus = $Map/Nexus
 
 func _ready() -> void:
-	#enemy_spawner.amount = 10
 	enemy_spawner.spawn_enemies()
-	
 	nexus.health_component.died.connect(dead)
 	
 
 func dead() -> void:
+	await get_tree().create_timer(0.2).timeout
 	scene_loader.load_ui_scene(scene_loader.ui_scenes.death_screen, false)
 	

@@ -28,9 +28,15 @@ class_name PlayerUI extends Control
 @export var disable_crosshair_position_calculation : bool = false
 
 func _process(_delta: float) -> void:
+	if get_tree().paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		queue_free()
+		
+	
 	if !disable_crosshair_position_calculation:
 		_cross_hair_position = get_viewport_rect().get_center() - crosshair_center_offset
 	queue_redraw()
+	
 
 func _draw() -> void:
 	match crosshair_type:

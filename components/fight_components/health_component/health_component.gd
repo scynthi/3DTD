@@ -13,13 +13,22 @@ var enabled_health_overflow : bool = true
 var overheal_effect_duration : float = 2.0
 
 func _ready() -> void:
-	regen_timer.wait_time = regen_time
+	if regen_time > 0.0: 
+		regen_timer.wait_time = regen_time
+		regen_timer.start(regen_time)
+		
+	
 	fullheal()
 	
 
 func _physics_process(delta: float) -> void:
 	if current_health > max_health:
 		current_health = lerpf(current_health, max_health, delta * overheal_effect_duration)
+		
+	
+	if regen_timer.is_stopped() and regen_time > 0.0 and current_health < max_health:
+		regen_timer.start(regen_time)
+		
 	
 
 func heal(amount : float) -> void:
@@ -39,9 +48,6 @@ func damage(amount : float) -> void:
 		died.emit()
 		return
 		
-	
-	if regen_timer.is_stopped() and regen_time > 0.0:
-		regen_timer.start(regen_time)
 	
 
 func _on_regen_timer_timeout() -> void:

@@ -32,3 +32,9 @@ func _on_maxed_turret_button_pressed() -> void:
 		global.player.place_tower()
 		queue_free()
 		
+
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("esc"):
+		global.player.current_platform = null
+		queue_free()

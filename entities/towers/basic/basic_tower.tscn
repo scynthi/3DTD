@@ -68,8 +68,21 @@ shape = SubResource("BoxShape3D_ela8a")
 [node name="ShootTimer" type="Timer" parent="." unique_id=945584712]
 autostart = true
 
+[node name="HpLabel" type="Label3D" parent="." unique_id=114713139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2991872, -0.13723946)
+billboard = 1
+double_sided = false
+modulate = Color(0, 1, 0.5176471, 1)
+text = "HP: 10 / 10"
+font_size = 57
+
+[node name="HpLabelUpdateTimer" type="Timer" parent="." unique_id=1939338033]
+wait_time = 0.35
+autostart = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="HpLabelUpdateTimer" to="." method="_on_hp_label_update_timer_timeout"]
 
 [editable path="HurtboxComponent"]

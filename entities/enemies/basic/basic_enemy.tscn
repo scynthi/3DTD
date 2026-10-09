@@ -93,6 +93,8 @@ shape = SubResource("BoxShape3D_7ubcb")
 health_component = NodePath("HealthComponent")
 
 [node name="HealthComponent" parent="HealthHandler" unique_id=1427219598 instance=ExtResource("3_ose1q")]
+regen_time = 0.0
+regen_amount = 0.0
 
 [node name="HurtboxComponent" parent="HealthHandler" unique_id=1519753759 node_paths=PackedStringArray("health_handler") instance=ExtResource("4_ur1ql")]
 collision_layer = 4

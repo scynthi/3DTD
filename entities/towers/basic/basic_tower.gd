@@ -7,12 +7,16 @@ const BULLET_SCENE = preload("res://entities/projectiles/bullet.tscn")
 @onready var shoot_timer : Timer = $ShootTimer
 @onready var detection_range : float = $DetectionArea/DetectionCollisionShape3D.shape.size.z
 @onready var detection_range_collision_shape : CollisionShape3D = $DetectionArea/DetectionCollisionShape3D
-
-@export var default_stats : TowerData
+@onready var hp_label: Label3D = $HpLabel
 
 var enemy : Enemy = null
 var damage : float = 1
 
+
+func _ready() -> void:
+	health_component.max_health = default_stats.health + global.tower_data.health
+	health_component.fullheal()
+	
 
 func update_damage(value : float):
 	damage = default_stats.damage + value
@@ -76,4 +80,9 @@ func _on_shoot_timer_timeout() -> void:
 		calculated_bullet_transform.origin = head.global_transform.origin
 		
 		bullet.transform = calculated_bullet_transform
+	
+
+
+func _on_hp_label_update_timer_timeout() -> void:
+	hp_label.text = "HP: " + str(int(health_component.max_health)) + " / " + str(int(health_component.current_health))
 	

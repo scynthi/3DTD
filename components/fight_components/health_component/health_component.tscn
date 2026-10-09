@@ -6,5 +6,6 @@
 script = ExtResource("1_ol33d")
 
 [node name="RegenTimer" type="Timer" parent="." unique_id=1010431874]
+one_shot = true
 
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

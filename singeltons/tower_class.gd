@@ -1,5 +1,7 @@
 class_name Tower extends Node3D
 
+@export var default_stats : TowerData
+
 @warning_ignore("unused_parameter")
 func update_damage(value : float):
 	pass

@@ -36,6 +36,7 @@ fourcross_width = 4.0
 fourcross_color = Color(0, 0.5058824, 1, 1)
 fourcross_draw_outline = true
 fourcross_outline_size = 5.0
+_cross_hair_position = Vector2(653, 364)
 
 [node name="FragmentsUI" type="HBoxContainer" parent="UI" unique_id=1754845173]
 layout_mode = 1
@@ -94,16 +95,14 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mfvlh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oefmj")
 show_percentage = false
 
-[node name="Label" type="Label" parent="UI" unique_id=446600323]
+[node name="WaveLabel" type="Label" parent="UI" unique_id=446600323]
 layout_mode = 0
 offset_left = 12.0
 offset_right = 97.0
 offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 25
-text = "3DTD BETA"
+text = "Wave 0"
 
 [node name="Shop2" parent="UI" unique_id=1099879294 instance=ExtResource("3_oefmj")]
 layout_mode = 1

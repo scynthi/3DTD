@@ -3,8 +3,8 @@ class_name EnemySpawner extends Node3D
 @onready var spawn_area : CollisionShape3D = $Area3D/SpawnArea
 
 
-@onready var enemy_scenes : Array[PackedScene] = [preload("res://entities/enemies/basic/basic_enemy.tscn")]
-var amount_dict : Dictionary[String, int] = {"basic": 10, "advanced": 0, "maxed": 0}
+@onready var enemy_scenes : Array[PackedScene] = [preload("res://entities/enemies/basic/basic_enemy.tscn"), preload("res://entities/enemies/advanced/advanced_enemy.tscn")]
+var amount_dict : Dictionary[String, int] = {"basic": 1, "advanced": 1}
 
 
 func spawn_enemies() -> void:
@@ -14,7 +14,7 @@ func spawn_enemies() -> void:
 		var current_enemy_scene : PackedScene = enemy_scenes[amount_dict.keys().find(key)]
 		
 		for amount in range(amount_dict[key]):
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.55).timeout
 			
 			var current_enemy : Enemy = current_enemy_scene.instantiate()
 			

@@ -5,13 +5,13 @@
 [ext_resource type="Script" uid="uid://bv410tr137cah" path="res://singeltons/tower_data.gd" id="2_ela8a"]
 [ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="3_k6dhx"]
 [ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="4_k6dhx"]
+[ext_resource type="PackedScene" uid="uid://cmto8vrgf0qvy" path="res://assets/models/towers/blue/Kek torony also.glb" id="5_vl76q"]
+[ext_resource type="PackedScene" uid="uid://bbthbjhchv7rv" path="res://assets/models/towers/blue/Kek torony felso.glb" id="6_u1drb"]
+[ext_resource type="PackedScene" uid="uid://cq2bmwvf1xxyg" path="res://assets/models/towers/blue/Kek agyu.glb" id="7_u1drb"]
 
 [sub_resource type="Resource" id="Resource_pa52q"]
 script = ExtResource("2_ela8a")
 metadata/_custom_type_script = "uid://bv410tr137cah"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0drk"]
-albedo_color = Color(0, 0.6901961, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6e6s"]
 size = Vector3(11, 1.983, 11)
@@ -19,8 +19,9 @@ size = Vector3(11, 1.983, 11)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
 size = Vector3(1.5, 2.540039, 1.0620117)
 
-[node name="BasicTower" type="Node3D" unique_id=281287575 groups=["towers"]]
+[node name="BasicTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel") groups=["towers"]]
 script = ExtResource("1_p0drk")
+barrel = NodePath("Body/Head/Kek agyu/Barrel")
 default_stats = SubResource("Resource_pa52q")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_ctiyy")]
@@ -28,23 +29,23 @@ health_component = NodePath("HealthComponent")
 
 [node name="HealthComponent" parent="HealthHandler" unique_id=959973023 instance=ExtResource("3_k6dhx")]
 
-[node name="Body" type="CSGBox3D" parent="." unique_id=568464956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3223267, 0)
-use_collision = true
-collision_layer = 8
-collision_mask = 0
-size = Vector3(1.2900391, 2.6446533, 0.80566406)
+[node name="Body" type="Node3D" parent="." unique_id=885337404]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.63379955, 0)
 
-[node name="Head" type="Marker3D" parent="." unique_id=639459238]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4015713, -0.38371876)
+[node name="LowerBody" parent="Body" unique_id=1946216835 instance=ExtResource("5_vl76q")]
+transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.13998294, 0)
 
-[node name="Head" type="CSGBox3D" parent="Head" unique_id=2054450730]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.37367365)
-use_collision = true
-collision_layer = 8
-collision_mask = 0
-size = Vector3(0.2265625, 0.22180176, 0.74102783)
-material = SubResource("StandardMaterial3D_p0drk")
+[node name="Kek torony felso" parent="Body" unique_id=321906510 instance=ExtResource("6_u1drb")]
+transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, -0.5880962, 0)
+
+[node name="Head" type="Marker3D" parent="Body" unique_id=639459238]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.803, 0)
+
+[node name="Kek agyu" parent="Body/Head" unique_id=774207341 instance=ExtResource("7_u1drb")]
+transform = Transform3D(-2.3822707e-08, 0, 0.545, 0, 0.545, 0, -0.545, 0, -2.3822707e-08, 0, -1.915, 0)
+
+[node name="Barrel" type="Marker3D" parent="Body/Head/Kek agyu" unique_id=1585415528]
+transform = Transform3D(0.99999964, 0, 1.0658141e-14, 0, 0.99999964, 0, -1.0658141e-14, 0, 0.99999964, 2.9540558, 3.982243, 1.2912588e-07)
 
 [node name="DetectionArea" type="Area3D" parent="." unique_id=462242013]
 collision_layer = 0
@@ -65,16 +66,16 @@ health_handler = NodePath("../HealthHandler")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2299805, -0.03100586)
 shape = SubResource("BoxShape3D_ela8a")
 
-[node name="ShootTimer" type="Timer" parent="." unique_id=945584712]
-autostart = true
-
 [node name="HpLabel" type="Label3D" parent="." unique_id=114713139]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2991872, -0.13723946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8611212, -0.13723946)
 billboard = 1
 double_sided = false
 modulate = Color(0, 1, 0.5176471, 1)
 text = "HP: 10 / 10"
 font_size = 57
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=945584712]
+autostart = true
 
 [node name="HpLabelUpdateTimer" type="Timer" parent="." unique_id=1939338033]
 wait_time = 0.35

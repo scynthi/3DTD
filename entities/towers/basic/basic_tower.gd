@@ -3,11 +3,12 @@ class_name BasicTower extends Tower
 const BULLET_SCENE = preload("res://entities/projectiles/bullet.tscn")
 
 @onready var health_component : HealthComponent = $HealthHandler/HealthComponent
-@onready var head : Marker3D = $Head
+@onready var head: Marker3D = $Body/Head
 @onready var shoot_timer : Timer = $ShootTimer
 @onready var detection_range : float = $DetectionArea/DetectionCollisionShape3D.shape.size.z
 @onready var detection_range_collision_shape : CollisionShape3D = $DetectionArea/DetectionCollisionShape3D
 @onready var hp_label: Label3D = $HpLabel
+@export var barrel: Marker3D
 
 var enemy : Enemy = null
 var damage : float = 1
@@ -70,16 +71,18 @@ func reset_target() -> void:
 func _on_shoot_timer_timeout() -> void:
 	if enemy:
 		var bullet : Bullet = BULLET_SCENE.instantiate()
-		get_tree().current_scene.add_child(bullet)
+		
 		@warning_ignore("narrowing_conversion")
 		bullet.update_damage(damage)
-		bullet.global_position = head.global_position
 		
 		var calculated_bullet_transform  : Transform3D = bullet.transform
 		calculated_bullet_transform.basis = head.global_transform.basis
 		calculated_bullet_transform.origin = head.global_transform.origin
 		
+		get_tree().current_scene.add_child(bullet)
 		bullet.transform = calculated_bullet_transform
+		bullet.global_position = barrel.global_position
+		
 	
 
 

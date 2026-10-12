@@ -3,15 +3,16 @@ class_name SpectatorPlayerCamera extends Camera3D
 @onready var player_ui: PlayerUI = $UI/PlayerUI
 @onready var default_position : Vector3 = self.global_position
 
-var fragments : int = 999999999 if global.infinite_fragment else 20
 var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed":0}
-
+var fragments : int = 999999999 if global.infinite_fragment else 20
 var is_camera_focused : bool = false
+var current_platform : Platform = null
 
 const BASIC_TOWER_SCENE : PackedScene = preload("res://entities/towers/basic/basic_tower.tscn")
+const ADVANCED_TOWER_SCENE : PackedScene = preload("res://entities/towers/advanced/advanced_tower.tscn")
+const MAXED_TOWER_SCENE : PackedScene = preload("res://entities/towers/maxed/maxed_tower.tscn")
 const TOWER_SHOP : PackedScene = preload("res://ui/Shop/turretshop.tscn")
 
-var current_platform : Platform = null
 
 func _init() -> void:
 	global.player = self
@@ -32,13 +33,7 @@ func _physics_process(_delta: float) -> void:
 	
 
 func project_raycast_from_mouse_position() -> void:
-	if is_camera_focused:
-		global_position = default_position
-		is_camera_focused = false
-		current_platform = null
-	
-	if current_platform: return
-	
+	if current_platform || is_camera_focused: return
 	
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
 	var ray_length : int = 1000
@@ -49,7 +44,7 @@ func project_raycast_from_mouse_position() -> void:
 	
 	ray_query.from = from
 	ray_query.to = to
-	ray_query.collide_with_areas = true
+	ray_query.collide_with_areas = false
 	ray_query.collide_with_bodies = true
 	
 	var result_dict := space.intersect_ray(ray_query)
@@ -63,15 +58,21 @@ func project_raycast_from_mouse_position() -> void:
 		
 		if !current_platform.is_enabled: return
 		
-		if current_platform.has_tower:
-			focus_on_platform(current_platform)
-		else:
-			var tower_ui : TurretShop = TOWER_SHOP.instantiate()
-			get_tree().current_scene.add_child(tower_ui)
-			tower_ui.position = get_viewport().get_mouse_position() - Vector2(40, 40)
-			
-	elif result is Tower:
-		pass
+		focus_on_platform(current_platform)
+		
+	
+
+func open_turret_shop() -> void:
+	var tower_ui : TurretShop = TOWER_SHOP.instantiate()
+	get_tree().current_scene.add_child(tower_ui)
+	tower_ui.position = get_viewport().get_mouse_position() - Vector2(40, 40)
+	tower_ui.ShowTurrets(current_platform.tower_level)
+	
+
+func reset_camera_focus() -> void:
+	global_position = default_position
+	is_camera_focused = false
+	current_platform = null
 	
 
 func focus_on_platform(platform : Platform) -> void:
@@ -79,6 +80,8 @@ func focus_on_platform(platform : Platform) -> void:
 	
 	global_position = new_position
 	is_camera_focused = true
+	
+	open_turret_shop()
 	
 
 func place_tower() -> void:
@@ -88,17 +91,15 @@ func place_tower() -> void:
 		tower_instance = BASIC_TOWER_SCENE.instantiate()
 		bought_towers["simple"] -= 1
 	elif (bought_towers["advanced"] > 0):
-		tower_instance = BASIC_TOWER_SCENE.instantiate()
+		tower_instance = ADVANCED_TOWER_SCENE.instantiate()
 		bought_towers["advanced"] -= 1
 	elif (bought_towers["maxed"] > 0):
-		tower_instance = BASIC_TOWER_SCENE.instantiate()
+		tower_instance = MAXED_TOWER_SCENE.instantiate()
 		bought_towers["maxed"] -= 1
-	else:
-		return
-		
+	else: return
 	
 	get_tree().current_scene.add_child(tower_instance)
 	tower_instance.global_position = current_platform.global_position
-	current_platform.has_tower = true
+	current_platform.set_tower_level(tower_instance)
 	current_platform = null
 	

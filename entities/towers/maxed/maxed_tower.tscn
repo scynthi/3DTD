@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cjrnynuu64hui"]
+
+[ext_resource type="Script" uid="uid://dd8g6yqm00oym" path="res://entities/towers/maxed/maxed_tower.gd" id="1_dfecx"]
+[ext_resource type="Script" uid="uid://bv410tr137cah" path="res://singeltons/tower_data.gd" id="2_2yx7p"]
+[ext_resource type="PackedScene" uid="uid://ks4ysvijrrhp" path="res://components/fight_components/health_handler/health_handler.tscn" id="2_iuu4a"]
+[ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="3_2yx7p"]
+[ext_resource type="PackedScene" uid="uid://c5x1776ukxlxh" path="res://assets/models/towers/red/Piros torony also.glb" id="5_iuu4a"]
+[ext_resource type="PackedScene" uid="uid://corc5msacil4b" path="res://assets/models/towers/red/Piros torony felso.glb" id="6_2yx7p"]
+[ext_resource type="PackedScene" uid="uid://brpe6m501f7yq" path="res://assets/models/towers/red/Piros agyu.glb" id="7_2261h"]
+[ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="7_a4ssd"]
+
+[sub_resource type="Resource" id="Resource_6bin0"]
+script = ExtResource("2_2yx7p")
+damage = 6
+health = 30
+attack_speed = 0.67
+detection_range = 16
+metadata/_custom_type_script = "uid://bv410tr137cah"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6e6s"]
+size = Vector3(11, 1.983, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
+size = Vector3(1.5, 2.540039, 1.0620117)
+
+[node name="MaxedTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel") groups=["towers"]]
+script = ExtResource("1_dfecx")
+barrel = NodePath("Body/Head/Piros agyu/Barrel")
+default_stats = SubResource("Resource_6bin0")
+
+[node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_iuu4a")]
+health_component = NodePath("HealthComponent")
+
+[node name="HealthComponent" parent="HealthHandler" unique_id=959973023 instance=ExtResource("3_2yx7p")]
+
+[node name="Body" type="Node3D" parent="." unique_id=885337404]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.63379955, 0)
+
+[node name="Piros torony also" parent="Body" unique_id=1327131828 instance=ExtResource("5_iuu4a")]
+transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.13998294, 0)
+
+[node name="Piros torony felso" parent="Body" unique_id=1196830921 instance=ExtResource("6_2yx7p")]
+transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, -0.5880962, 0)
+
+[node name="Head" type="Marker3D" parent="Body" unique_id=639459238]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.803, 0)
+
+[node name="Piros agyu" parent="Body/Head" unique_id=1303099022 instance=ExtResource("7_2261h")]
+transform = Transform3D(-2.3822707e-08, 0, 0.545, 0, 0.545, 0, -0.545, 0, -2.3822707e-08, 0, -1.915, 0)
+
+[node name="Barrel" type="Marker3D" parent="Body/Head/Piros agyu" unique_id=1585415528]
+transform = Transform3D(0.99999964, 0, 1.0658141e-14, 0, 0.99999964, 0, -1.0658141e-14, 0, 0.99999964, 2.9540555, 3.9822426, 1.2912587e-07)
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=462242013]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="DetectionCollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=583022030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7775879, 1, -0.17097092)
+shape = SubResource("BoxShape3D_w6e6s")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="HurtboxComponent" parent="." unique_id=1467163675 node_paths=PackedStringArray("health_handler") instance=ExtResource("7_a4ssd")]
+collision_layer = 8
+collision_mask = 4
+health_handler = NodePath("../HealthHandler")
+
+[node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2299805, -0.03100586)
+shape = SubResource("BoxShape3D_ela8a")
+
+[node name="HpLabel" type="Label3D" parent="." unique_id=114713139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8611212, -0.13723946)
+billboard = 1
+double_sided = false
+modulate = Color(0, 1, 0.5176471, 1)
+text = "HP: 10 / 10"
+font_size = 57
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=945584712]
+autostart = true
+
+[node name="HpLabelUpdateTimer" type="Timer" parent="." unique_id=1939338033]
+wait_time = 0.35
+autostart = true
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="HpLabelUpdateTimer" to="." method="_on_hp_label_update_timer_timeout"]
+
+[editable path="HurtboxComponent"]

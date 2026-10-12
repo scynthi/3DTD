@@ -4,7 +4,7 @@ class_name SpectatorPlayerCamera extends Camera3D
 @onready var default_position : Vector3 = self.global_position
 
 var bought_towers : Dictionary[String, int] = {"simple":0, "advanced":0, "maxed":0}
-var fragments : int = 999999999 if global.infinite_fragment else 20
+var fragments : int = 999999999 if global.infinite_fragment else 70
 var is_camera_focused : bool = false
 var current_platform : Platform = null
 

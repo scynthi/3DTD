@@ -24,10 +24,10 @@ func _on_wave_timer_timeout() -> void:
 	
 	global.current_wave += 1
 	
-	enemy_spawner.amount_dict["basic"] += 1
+	enemy_spawner.amount_dict["basic"] += 2
 	enemy_spawner.amount_dict["advanced"] += 1
 	
-	global.enemy_data.health += 1
+	global.enemy_data.health += 3
 	global.enemy_data.damage += 1
 	
 	enemy_spawner.spawn_enemies()

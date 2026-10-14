@@ -1,4 +1,4 @@
-class_name Nexus extends CSGBox3D
+class_name Nexus extends Node3D
 
 @onready var health_component: HealthComponent = $HealthComponent
 

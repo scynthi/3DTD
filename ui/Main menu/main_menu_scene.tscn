@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://6fsflnsx3mvo"]
 
+[ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="1_4be4i"]
 [ext_resource type="Script" uid="uid://bxqiwo4ngd5b5" path="res://ui/Main menu/main_menu_scene.gd" id="1_cynu2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xrivr"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4be4i")
 script = ExtResource("1_cynu2")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=378074800]

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dn34xsvp8vpeq"]
 
+[ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="1_jrwa8"]
 [ext_resource type="Script" uid="uid://b2cky4dvokc4b" path="res://ui/Shop/generalshop.gd" id="1_r266m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gblk"]
@@ -28,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jrwa8")
 script = ExtResource("1_r266m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1000821536]

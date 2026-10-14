@@ -1,20 +1,102 @@
 [gd_scene format=3 uid="uid://cbl80l6a2voyq"]
 
-[ext_resource type="Texture2D" uid="uid://bf4tsp7yb2w7v" path="res://assets/textures/game/cigan.jpg" id="1_2pxtc"]
 [ext_resource type="Script" uid="uid://c3iopu8lxnx04" path="res://entities/towers/nexus/nexus.gd" id="2_pl1i6"]
 [ext_resource type="PackedScene" uid="uid://ks4ysvijrrhp" path="res://components/fight_components/health_handler/health_handler.tscn" id="3_rjon3"]
 [ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="4_t5yr6"]
 [ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="5_rjon3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pxtc"]
-albedo_texture = ExtResource("1_2pxtc")
+[ext_resource type="PackedScene" uid="uid://sec7kuc7mi8j" path="res://assets/models/Platform/platform.tscn" id="5_t5yr6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rjon3"]
-size = Vector3(1.2, 1, 1.2)
+size = Vector3(2.3134766, 1.5354004, 2.1604004)
 
-[node name="Nexus" type="CSGBox3D" unique_id=1245046979 groups=["nexus"]]
-use_collision = true
-material = SubResource("StandardMaterial3D_2pxtc")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjon3"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.8980392, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kv3xr"]
+material = SubResource("StandardMaterial3D_rjon3")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5yr6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.49803922, 1, 0.46666667)
+
+[sub_resource type="SphereMesh" id="SphereMesh_m4v7r"]
+material = SubResource("StandardMaterial3D_t5yr6")
+radius = 1.5
+height = 3.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Animation" id="Animation_t5yr6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.3767445, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rjon3"]
+resource_name = "orbing"
+length = 3.0000000000000004
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.3767445, 0), Vector3(0, 1.697, 0), Vector3(0, 1.3767445, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5yr6"]
+_data = {
+&"RESET": SubResource("Animation_t5yr6"),
+&"orbing": SubResource("Animation_rjon3")
+}
+
+[node name="Nexus" type="Node3D" unique_id=1929235044]
 script = ExtResource("2_pl1i6")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("3_rjon3")]
@@ -23,6 +105,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HealthComponent" parent="." unique_id=1427219598 instance=ExtResource("4_t5yr6")]
 
 [node name="HurtboxComponent" parent="." unique_id=708199924 node_paths=PackedStringArray("health_handler") instance=ExtResource("5_rjon3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5043974, 0)
 collision_layer = 8
 collision_mask = 4
 health_handler = NodePath("../HealthHandler")
@@ -30,6 +113,19 @@ health_handler = NodePath("../HealthHandler")
 [node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
 shape = SubResource("BoxShape3D_rjon3")
 
-[connection signal="health_drained" from="HealthHandler" to="." method="_on_health_handler_health_drained"]
+[node name="Platform" parent="." unique_id=170441316 instance=ExtResource("5_t5yr6")]
+is_enabled = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1508653109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3767445, 0)
+mesh = SubResource("SphereMesh_kv3xr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1418304318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3767445, 0)
+mesh = SubResource("SphereMesh_m4v7r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=340544005]
+libraries/ = SubResource("AnimationLibrary_t5yr6")
+autoplay = &"orbing"
 
 [editable path="HurtboxComponent"]

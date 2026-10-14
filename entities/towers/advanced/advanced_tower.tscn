@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://d0gmbu0hp6jy7" path="res://entities/towers/advanced/advanced_tower.gd" id="1_kagk1"]
 [ext_resource type="Script" uid="uid://bv410tr137cah" path="res://singeltons/tower_data.gd" id="2_8qhn5"]
 [ext_resource type="PackedScene" uid="uid://ks4ysvijrrhp" path="res://components/fight_components/health_handler/health_handler.tscn" id="3_8viet"]
-[ext_resource type="PackedScene" uid="uid://ewtrg0i2ncro" path="res://assets/models/towers/orange/Narancs torony also.glb" id="4_cdq8b"]
 [ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="4_kukmv"]
-[ext_resource type="PackedScene" uid="uid://cnb4j0bhai1ek" path="res://assets/models/towers/orange/Narancs torony felso.glb" id="5_6bin0"]
+[ext_resource type="PackedScene" uid="uid://dkkulyari5kak" path="res://assets/models/towers/orange/Narancs torony.glb" id="5_cdq8b"]
 [ext_resource type="PackedScene" uid="uid://b7uw73sr8p0q5" path="res://assets/models/towers/orange/Narancs agyu.glb" id="6_pj50u"]
 [ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="8_wdhao"]
 
@@ -21,12 +20,13 @@ metadata/_custom_type_script = "uid://bv410tr137cah"
 size = Vector3(11, 1.983, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
-size = Vector3(1.5, 2.540039, 1.0620117)
+size = Vector3(2.5, 2.5, 2.5)
 
-[node name="AdvancedTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel") groups=["towers"]]
+[node name="AdvancedTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel", "health_component") groups=["towers"]]
 script = ExtResource("1_kagk1")
 barrel = NodePath("Body/Head/Narancs agyu/Barrel")
 default_stats = SubResource("Resource_cdq8b")
+health_component = NodePath("HealthHandler/HealthComponent")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("3_8viet")]
 health_component = NodePath("HealthComponent")
@@ -36,11 +36,8 @@ health_component = NodePath("HealthComponent")
 [node name="Body" type="Node3D" parent="." unique_id=885337404]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.63379955, 0)
 
-[node name="Narancs torony also" parent="Body" unique_id=27903222 instance=ExtResource("4_cdq8b")]
-transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.13998294, 0)
-
-[node name="Narancs torony felso" parent="Body" unique_id=1612437090 instance=ExtResource("5_6bin0")]
-transform = Transform3D(1.2350001, 0, 0, 0, 1.2350001, 0, 0, 0, 1.2350001, 0, -0.58809626, 0)
+[node name="Narancs torony" parent="Body" unique_id=1665399941 instance=ExtResource("5_cdq8b")]
+transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, 0, -1, 0)
 
 [node name="Head" type="Marker3D" parent="Body" unique_id=639459238]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.803, 0)

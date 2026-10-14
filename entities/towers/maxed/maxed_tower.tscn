@@ -4,8 +4,7 @@
 [ext_resource type="Script" uid="uid://bv410tr137cah" path="res://singeltons/tower_data.gd" id="2_2yx7p"]
 [ext_resource type="PackedScene" uid="uid://ks4ysvijrrhp" path="res://components/fight_components/health_handler/health_handler.tscn" id="2_iuu4a"]
 [ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="3_2yx7p"]
-[ext_resource type="PackedScene" uid="uid://c5x1776ukxlxh" path="res://assets/models/towers/red/Piros torony also.glb" id="5_iuu4a"]
-[ext_resource type="PackedScene" uid="uid://corc5msacil4b" path="res://assets/models/towers/red/Piros torony felso.glb" id="6_2yx7p"]
+[ext_resource type="PackedScene" uid="uid://b3m3e4t4kd5g4" path="res://assets/models/towers/red/Piros torony.glb" id="5_2yx7p"]
 [ext_resource type="PackedScene" uid="uid://brpe6m501f7yq" path="res://assets/models/towers/red/Piros agyu.glb" id="7_2261h"]
 [ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="7_a4ssd"]
 
@@ -21,12 +20,13 @@ metadata/_custom_type_script = "uid://bv410tr137cah"
 size = Vector3(11, 1.983, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
-size = Vector3(1.5, 2.540039, 1.0620117)
+size = Vector3(2.5, 2.5, 2.5)
 
-[node name="MaxedTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel") groups=["towers"]]
+[node name="MaxedTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel", "health_component") groups=["towers"]]
 script = ExtResource("1_dfecx")
 barrel = NodePath("Body/Head/Piros agyu/Barrel")
 default_stats = SubResource("Resource_6bin0")
+health_component = NodePath("HealthHandler/HealthComponent")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_iuu4a")]
 health_component = NodePath("HealthComponent")
@@ -36,11 +36,8 @@ health_component = NodePath("HealthComponent")
 [node name="Body" type="Node3D" parent="." unique_id=885337404]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.63379955, 0)
 
-[node name="Piros torony also" parent="Body" unique_id=1327131828 instance=ExtResource("5_iuu4a")]
-transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.13998294, 0)
-
-[node name="Piros torony felso" parent="Body" unique_id=1196830921 instance=ExtResource("6_2yx7p")]
-transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, -0.5880962, 0)
+[node name="Piros torony" parent="Body" unique_id=1446440939 instance=ExtResource("5_2yx7p")]
+transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, 0, -1, 0)
 
 [node name="Head" type="Marker3D" parent="Body" unique_id=639459238]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.803, 0)

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dkkulyari5kak"
-path="res://.godot/imported/Narancs torony.glb-94d88c4c565f95fb45a2a40def2c6cc9.scn"
+path="res://.godot/imported/Narancs torony.glb-2add2bdaf04c7f4e7714272cab74e80f.scn"
 
 [deps]
 
-source_file="res://assets/models/etc/Narancs torony.glb"
-dest_files=["res://.godot/imported/Narancs torony.glb-94d88c4c565f95fb45a2a40def2c6cc9.scn"]
+source_file="res://assets/models/towers/orange/Narancs torony.glb"
+dest_files=["res://.godot/imported/Narancs torony.glb-2add2bdaf04c7f4e7714272cab74e80f.scn"]
 
 [params]
 

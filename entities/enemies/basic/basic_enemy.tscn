@@ -12,7 +12,7 @@ script = ExtResource("2_ur1ql")
 metadata/_custom_type_script = "uid://doyv6710c8gfk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ubcb"]
-size = Vector3(1, 1, 0.2107544)
+size = Vector3(2.0625, 1, 0.6113281)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u4vsb"]
 
@@ -42,6 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ose1q"]
 resource_name = "switch_attack_state"
+length = 3.0000000000000004
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,7 +73,7 @@ health_handler = NodePath("HealthHandler")
 enemy_stats = SubResource("Resource_ose1q")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1823911225]
-debug_enabled = true
+avoidance_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 

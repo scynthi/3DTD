@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b6upmpyxhxife"]
 
+[ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="1_kqgdi"]
 [ext_resource type="Script" uid="uid://dh7jfcqt8kpq7" path="res://ui/Shop/turretshop.gd" id="1_psjpc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6khqe"]
@@ -16,11 +17,13 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="Turretshop" type="Control" unique_id=1227217042]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.104
+anchor_bottom = 0.14500001
+offset_right = 0.31999207
+offset_bottom = 0.3999939
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_kqgdi")
 script = ExtResource("1_psjpc")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1132150267]

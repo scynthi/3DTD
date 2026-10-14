@@ -2,7 +2,6 @@ class_name MaxedTower extends Tower
 
 const BULLET_SCENE = preload("res://entities/projectiles/bullet.tscn")
 
-@onready var health_component : HealthComponent = $HealthHandler/HealthComponent
 @onready var head: Marker3D = $Body/Head
 @onready var shoot_timer : Timer = $ShootTimer
 @onready var detection_range : float = $DetectionArea/DetectionCollisionShape3D.shape.size.z
@@ -87,5 +86,5 @@ func _on_shoot_timer_timeout() -> void:
 
 
 func _on_hp_label_update_timer_timeout() -> void:
-	hp_label.text = "HP: " + str(int(health_component.max_health)) + " / " + str(int(health_component.current_health))
+	hp_label.text = "HP: " + str(int(health_component.current_health)) + " / " + str(int(health_component.max_health))
 	

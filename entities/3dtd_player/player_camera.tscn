@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://1ghmtj5jdp7t" path="res://entities/player/player_ui/player_ui.tscn" id="1_wm1v3"]
 [ext_resource type="Script" uid="uid://du82nk17tcft1" path="res://entities/3dtd_player/player_camera.gd" id="1_xp13a"]
+[ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="2_mfvlh"]
 [ext_resource type="Script" uid="uid://cgwh7vl8jacuu" path="res://entities/3dtd_player/ui.gd" id="2_ves7s"]
 [ext_resource type="PackedScene" uid="uid://dn34xsvp8vpeq" path="res://ui/Shop/generalshop.tscn" id="3_oefmj"]
+[ext_resource type="FontFile" uid="uid://7htxca65mquu" path="res://assets/ui_assets/fonts/vcr_osd_mono.ttf" id="5_uy6oq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfvlh"]
 bg_color = Color(0.094720505, 4.737871e-08, 1.35367735e-08, 0.6862745)
@@ -21,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_mfvlh")
 script = ExtResource("2_ves7s")
 
 [node name="PlayerUI" parent="UI" unique_id=1548436313 instance=ExtResource("1_wm1v3")]
@@ -36,25 +39,7 @@ fourcross_width = 4.0
 fourcross_color = Color(0, 0.5058824, 1, 1)
 fourcross_draw_outline = true
 fourcross_outline_size = 5.0
-_cross_hair_position = Vector2(653, 364)
-
-[node name="FragmentsUI" type="HBoxContainer" parent="UI" unique_id=1754845173]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/FragmentsUI" unique_id=1527494284]
-custom_minimum_size = Vector2(238.85, 50)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 34
-bbcode_enabled = true
-text = "[wave] Fragments: 0 [/wave]"
-fit_content = true
-scroll_active = false
+_cross_hair_position = Vector2(639, 332.5)
 
 [node name="TowerHealth" type="Control" parent="UI" unique_id=941623467]
 layout_mode = 1
@@ -76,6 +61,34 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="WaveUI" type="HBoxContainer" parent="UI/TowerHealth/MarginContainer" unique_id=478287437]
+layout_mode = 2
+
+[node name="WaveLabel" type="Label" parent="UI/TowerHealth/MarginContainer/WaveUI" unique_id=446600323]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 34
+text = "Wave 0"
+
+[node name="FragmentsUI" type="HBoxContainer" parent="UI/TowerHealth/MarginContainer" unique_id=1754845173]
+layout_mode = 2
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/TowerHealth/MarginContainer/FragmentsUI" unique_id=1527494284]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("5_uy6oq")
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "[wave]Fragments:
+0[/wave]"
+fit_content = true
+scroll_active = false
+
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TowerHealth/MarginContainer" unique_id=656782105]
 layout_mode = 2
 alignment = 1
@@ -85,6 +98,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/TowerHealth/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1990299425]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
 text = "Main tower's health"
 horizontal_alignment = 1
 
@@ -94,15 +110,6 @@ layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mfvlh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oefmj")
 show_percentage = false
-
-[node name="WaveLabel" type="Label" parent="UI" unique_id=446600323]
-layout_mode = 0
-offset_left = 12.0
-offset_right = 97.0
-offset_bottom = 23.0
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 25
-text = "Wave 0"
 
 [node name="Shop2" parent="UI" unique_id=1099879294 instance=ExtResource("3_oefmj")]
 layout_mode = 1

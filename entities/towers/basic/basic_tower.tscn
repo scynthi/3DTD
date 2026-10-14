@@ -5,8 +5,7 @@
 [ext_resource type="Script" uid="uid://bv410tr137cah" path="res://singeltons/tower_data.gd" id="2_ela8a"]
 [ext_resource type="PackedScene" uid="uid://cod0et47itl4w" path="res://components/fight_components/health_component/health_component.tscn" id="3_k6dhx"]
 [ext_resource type="PackedScene" uid="uid://cvv2w3wmcg730" path="res://components/fight_components/hurtbox_component/hurtbox_component.tscn" id="4_k6dhx"]
-[ext_resource type="PackedScene" uid="uid://cmto8vrgf0qvy" path="res://assets/models/towers/blue/Kek torony also.glb" id="5_vl76q"]
-[ext_resource type="PackedScene" uid="uid://bbthbjhchv7rv" path="res://assets/models/towers/blue/Kek torony felso.glb" id="6_u1drb"]
+[ext_resource type="PackedScene" uid="uid://bvldsye00vfa8" path="res://assets/models/towers/blue/Kek torony.glb" id="5_vl76q"]
 [ext_resource type="PackedScene" uid="uid://cq2bmwvf1xxyg" path="res://assets/models/towers/blue/Kek agyu.glb" id="7_u1drb"]
 
 [sub_resource type="Resource" id="Resource_pa52q"]
@@ -17,12 +16,13 @@ metadata/_custom_type_script = "uid://bv410tr137cah"
 size = Vector3(11, 1.983, 11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela8a"]
-size = Vector3(1.5, 2.540039, 1.0620117)
+size = Vector3(2.5, 2.5, 2.5)
 
-[node name="BasicTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel") groups=["towers"]]
+[node name="BasicTower" type="Node3D" unique_id=281287575 node_paths=PackedStringArray("barrel", "health_component") groups=["towers"]]
 script = ExtResource("1_p0drk")
 barrel = NodePath("Body/Head/Kek agyu/Barrel")
 default_stats = SubResource("Resource_pa52q")
+health_component = NodePath("HealthHandler/HealthComponent")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_ctiyy")]
 health_component = NodePath("HealthComponent")
@@ -32,11 +32,8 @@ health_component = NodePath("HealthComponent")
 [node name="Body" type="Node3D" parent="." unique_id=885337404]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.63379955, 0)
 
-[node name="LowerBody" parent="Body" unique_id=1946216835 instance=ExtResource("5_vl76q")]
-transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.13998294, 0)
-
-[node name="Kek torony felso" parent="Body" unique_id=321906510 instance=ExtResource("6_u1drb")]
-transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, -0.5880962, 0)
+[node name="Kek torony" parent="Body" unique_id=1363454810 instance=ExtResource("5_vl76q")]
+transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, 0, -1, 0)
 
 [node name="Head" type="Marker3D" parent="Body" unique_id=639459238]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.803, 0)

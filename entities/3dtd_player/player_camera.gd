@@ -56,7 +56,9 @@ func project_raycast_from_mouse_position() -> void:
 	if result is Platform:
 		current_platform = result_dict["collider"]
 		
-		if !current_platform.is_enabled: return
+		if !current_platform.is_enabled: 
+			current_platform = null
+			return
 		
 		focus_on_platform(current_platform)
 		
@@ -65,7 +67,7 @@ func project_raycast_from_mouse_position() -> void:
 func open_turret_shop() -> void:
 	var tower_ui : TurretShop = TOWER_SHOP.instantiate()
 	get_tree().current_scene.add_child(tower_ui)
-	tower_ui.position = get_viewport().get_mouse_position() - Vector2(40, 40)
+	tower_ui.position = ( get_viewport().get_visible_rect().size + tower_ui.size ) / 2 - Vector2(40, 40)
 	tower_ui.ShowTurrets(current_platform.tower_level)
 	
 

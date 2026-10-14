@@ -1,7 +1,8 @@
 extends Node3D
 
-@onready var enemy_spawner : EnemySpawner = $Map/EnemySpawner
-@onready var nexus: Nexus = $Map/Nexus
+@export var enemy_spawner : EnemySpawner
+@export var nexus: Nexus
+
 @onready var wave_timer: Timer = $WaveTimer
 @onready var count_enemies_timer: Timer = $CountEnemiesTimer
 

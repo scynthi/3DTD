@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b3m3e4t4kd5g4"
-path="res://.godot/imported/Piros torony.glb-2b0e03022c622a863eac752c21b01475.scn"
+uid="uid://bvldsye00vfa8"
+path="res://.godot/imported/Kek torony.glb-bd1f0b2bceb6f98c90eaf3ecc0e98e94.scn"
 
 [deps]
 
-source_file="res://assets/models/etc/Piros torony.glb"
-dest_files=["res://.godot/imported/Piros torony.glb-2b0e03022c622a863eac752c21b01475.scn"]
+source_file="res://assets/models/towers/blue/Kek torony.glb"
+dest_files=["res://.godot/imported/Kek torony.glb-bd1f0b2bceb6f98c90eaf3ecc0e98e94.scn"]
 
 [params]
 

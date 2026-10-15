@@ -3,9 +3,10 @@ class_name SceneLoader extends Node
 const default_map_folder : String = "res://trenchbroom/maps/"
 const default_ui_scene_folder : String = "res://ui/"
 
-enum map_list { default_map }
+enum map_list { default_map, win_scene }
 var _map_dict : Dictionary[int, String] = {
-	map_list.default_map: default_map_folder+"default_map.tscn"
+	map_list.default_map: default_map_folder+"default_map.tscn",
+	map_list.win_scene: default_map_folder+"win/win.tscn"
 }
 
 enum ui_scenes {loading_screen, death_screen, main_menu }
@@ -13,7 +14,6 @@ var _ui_scenes_dict : Dictionary[int, String] = {
 	ui_scenes.loading_screen: default_ui_scene_folder+"loading_screen/loading_screen.tscn",
 	ui_scenes.death_screen: default_ui_scene_folder+"death_screen/death_screen.tscn",
 	ui_scenes.main_menu: default_ui_scene_folder+"Main menu/main_menu_scene.tscn"
-
 }
 
 var is_busy : bool = false

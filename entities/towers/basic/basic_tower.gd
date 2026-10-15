@@ -57,7 +57,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is Enemy:
 		if body != enemy: return
 		reset_target()
-		head.rotation = Vector3.ZERO
 	
 
 func reset_target() -> void:

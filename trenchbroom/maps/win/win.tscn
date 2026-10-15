@@ -1,0 +1,388 @@
+[gd_scene format=3 uid="uid://caecm2fhj1fes"]
+
+[ext_resource type="Texture2D" uid="uid://bf4tsp7yb2w7v" path="res://assets/textures/game/cigan.jpg" id="1_d1eww"]
+[ext_resource type="Script" uid="uid://m7sttgptxqwk" path="res://trenchbroom/maps/win/win.gd" id="1_e4s1o"]
+[ext_resource type="AudioStream" uid="uid://bmy2iu0hbht0n" path="res://assets/sounds/music/Joes Apartment - Cat Rodeo (No SFX).mp3" id="2_yguyc"]
+[ext_resource type="FontFile" uid="uid://7htxca65mquu" path="res://assets/ui_assets/fonts/vcr_osd_mono.ttf" id="3_4758k"]
+[ext_resource type="Texture2D" uid="uid://c1pubtcadr846" path="res://assets/textures/game/dori.png" id="3_fscn0"]
+[ext_resource type="Texture2D" uid="uid://bs8c71gry08a7" path="res://assets/textures/game/wood_planks_new_0007_03_tiled.jpg" id="5_0hijc"]
+[ext_resource type="Texture2D" uid="uid://dwd6u86vxnhea" path="res://assets/textures/game/5a2568fdf914c347018b7a37.webp" id="6_1ykdt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yguyc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_fscn0"]
+sky_material = SubResource("ProceduralSkyMaterial_yguyc")
+
+[sub_resource type="Environment" id="Environment_4758k"]
+background_mode = 2
+sky = SubResource("Sky_fscn0")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yguyc"]
+albedo_texture = ExtResource("1_d1eww")
+uv1_scale = Vector3(1.99, 1.99, 1.99)
+uv1_offset = Vector3(0.075, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fscn0"]
+material = SubResource("StandardMaterial3D_yguyc")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4758k"]
+load_path = "res://.godot/imported/dani.jpg-2cc74496e7f4c2fdd72eb8f70da9c0cd.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hijc"]
+albedo_texture = SubResource("CompressedTexture2D_4758k")
+uv1_scale = Vector3(1.99, 1.99, 1.99)
+uv1_offset = Vector3(0.075, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ykdt"]
+material = SubResource("StandardMaterial3D_0hijc")
+
+[sub_resource type="Animation" id="Animation_yguyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main stuff/duncikocka:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main stuff/cigankocka:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fscn0"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main stuff/duncikocka:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main stuff/cigankocka:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4758k"]
+_data = {
+&"RESET": SubResource("Animation_yguyc"),
+&"spin": SubResource("Animation_fscn0")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nukep"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("3_fscn0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kv3xr"]
+material = SubResource("StandardMaterial3D_nukep")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fscn0"]
+albedo_texture = ExtResource("5_0hijc")
+uv1_scale = Vector3(0.18, 1.19, 0.18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6e6s"]
+material = SubResource("StandardMaterial3D_fscn0")
+size = Vector3(0.36621094, 4.4108276, 0.21582031)
+
+[sub_resource type="Animation" id="Animation_72g6n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e4s1o"]
+resource_name = "jiggle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 2.378414, 1, 2.3784142),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.7, 0.6, 0), Vector3(0, 0, 0), Vector3(-0.7, 0.6, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.35953784), Vector3(0, 0, 0), Vector3(0, 0, 0.35953784)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72g6n"]
+_data = {
+&"RESET": SubResource("Animation_72g6n"),
+&"jiggle": SubResource("Animation_e4s1o")
+}
+
+[sub_resource type="Animation" id="Animation_1ykdt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6344094, 3.7957606)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0hijc"]
+resource_name = "pos"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.3666666, 6.0666666, 6.266667, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6, 3), Vector3(16, 0.6, 3), Vector3(16, 0.6, -2), Vector3(-16, 0.6, -2), Vector3(-16, 0.6, 3), Vector3(0, 0.6, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.2666667, 6.0333333, 6.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0), Vector3(0, 3.1415927, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 3.1415927, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ykdt"]
+_data = {
+&"RESET": SubResource("Animation_1ykdt"),
+&"pos": SubResource("Animation_0hijc")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ykdt"]
+albedo_texture = ExtResource("5_0hijc")
+uv1_scale = Vector3(13.575, 13.575, 13.575)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nukep"]
+material = SubResource("StandardMaterial3D_1ykdt")
+size = Vector3(59.408203, 1, 30.065552)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4s1o"]
+albedo_texture = ExtResource("6_1ykdt")
+uv1_scale = Vector3(3.025, 2, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yoklg"]
+material = SubResource("StandardMaterial3D_e4s1o")
+size = Vector3(59.339844, 18.004639, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72g6n"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sfgls"]
+material = SubResource("StandardMaterial3D_72g6n")
+
+[sub_resource type="Animation" id="Animation_au3l0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fcb07"]
+resource_name = "intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.8509804), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_au3l0"]
+_data = {
+&"RESET": SubResource("Animation_au3l0"),
+&"intro": SubResource("Animation_fcb07")
+}
+
+[node name="Win" type="Node3D" unique_id=1228459539]
+script = ExtResource("1_e4s1o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1172927929]
+environment = SubResource("Environment_4758k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=202510477]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=433921339]
+stream = ExtResource("2_yguyc")
+autoplay = true
+
+[node name="main stuff" type="Node3D" parent="." unique_id=1736482089]
+
+[node name="cigankocka" type="MeshInstance3D" parent="main stuff" unique_id=518108333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+mesh = SubResource("BoxMesh_fscn0")
+skeleton = NodePath("../..")
+
+[node name="duncikocka" type="MeshInstance3D" parent="main stuff" unique_id=981355628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+mesh = SubResource("BoxMesh_1ykdt")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="main stuff" unique_id=845747259]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4758k")
+autoplay = &"spin"
+
+[node name="Label3D" type="Label3D" parent="main stuff" unique_id=889368253]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, 0)
+text = "You win"
+font = ExtResource("3_4758k")
+font_size = 100
+
+[node name="Dori" type="Node3D" parent="." unique_id=745433385]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6344094, 3.7957606)
+
+[node name="JiggleHelperNode" type="Node3D" parent="Dori" unique_id=2110865685]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dori/JiggleHelperNode" unique_id=587400004]
+transform = Transform3D(-1.7, 2.5669289e-07, -1.12204015e-14, 0, -7.430936e-08, -1.7, -2.5669289e-07, -1.7, 7.430936e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kv3xr")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Dori/JiggleHelperNode" unique_id=584982742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35037348, -2.4864807, 0.12666988)
+mesh = SubResource("BoxMesh_w6e6s")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dori/JiggleHelperNode" unique_id=911039495]
+libraries/ = SubResource("AnimationLibrary_72g6n")
+autoplay = &"jiggle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dori" unique_id=2046936159]
+libraries/ = SubResource("AnimationLibrary_1ykdt")
+autoplay = &"pos"
+
+[node name="Map" type="Node3D" parent="." unique_id=1564506567]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1317325521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6869264, 6.853943)
+mesh = SubResource("BoxMesh_nukep")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Map" unique_id=71643891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.500122, 20.142872)
+mesh = SubResource("BoxMesh_yoklg")
+
+[node name="CameraAndStuff" type="Node3D" parent="." unique_id=327768544]
+
+[node name="Camera3D" type="Camera3D" parent="CameraAndStuff" unique_id=1724443031]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, -6.196753)
+fov = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraAndStuff" unique_id=438973446]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.62, -5.318)
+mesh = SubResource("PlaneMesh_sfgls")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraAndStuff" unique_id=1025292602]
+libraries/ = SubResource("AnimationLibrary_au3l0")
+autoplay = &"intro"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

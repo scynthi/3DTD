@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_damage_button_pressed() -> void:
-	if(damage_Price<global.player.fragments):
+	if(damage_Price<=global.player.fragments):
 		global.player.fragments-=damage_Price
 		damage_Level+=5
 		damage_Price = 10+damage_Level
@@ -43,7 +43,7 @@ func _on_damage_button_pressed() -> void:
 
 
 func _on_attack_speed_button_pressed() -> void:
-	if(attackspeed_Price<global.player.fragments):
+	if(attackspeed_Price<=global.player.fragments):
 		global.player.fragments-=attackspeed_Price
 		attackspeed_Level+=5
 		attackspeed_Price = 10+attackspeed_Level
@@ -55,7 +55,7 @@ func _on_attack_speed_button_pressed() -> void:
 
 
 func _on_attack_range_button_pressed() -> void:
-	if(attackrange_Price<global.player.fragments):
+	if(attackrange_Price<=global.player.fragments):
 		global.player.fragments-=attackrange_Price
 		attackrange_Price+=5
 		attack_range_button.text = str(attackrange_Price)
@@ -64,7 +64,7 @@ func _on_attack_range_button_pressed() -> void:
 
 
 func _on_hp_button_pressed() -> void:
-	if(attackrange_Price<global.player.fragments):
+	if(attackrange_Price<=global.player.fragments):
 		global.player.fragments-=hp_Price
 		hp_Price+=5
 		hp_button.text = str(hp_Price)

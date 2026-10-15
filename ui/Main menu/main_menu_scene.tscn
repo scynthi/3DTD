@@ -2,12 +2,78 @@
 
 [ext_resource type="Theme" uid="uid://bf1vvjeptw4fv" path="res://assets/ui_assets/themes/default_theme.tres" id="1_4be4i"]
 [ext_resource type="Script" uid="uid://bxqiwo4ngd5b5" path="res://ui/Main menu/main_menu_scene.gd" id="1_cynu2"]
+[ext_resource type="FontFile" uid="uid://7htxca65mquu" path="res://assets/ui_assets/fonts/vcr_osd_mono.ttf" id="3_nwpqy"]
+[ext_resource type="PackedScene" uid="uid://bvldsye00vfa8" path="res://assets/models/towers/blue/Kek torony.glb" id="3_p0wc7"]
+[ext_resource type="PackedScene" uid="uid://cq2bmwvf1xxyg" path="res://assets/models/towers/blue/Kek agyu.glb" id="4_4kw4s"]
+[ext_resource type="AudioStream" uid="uid://b3uhf0wa16msy" path="res://assets/sounds/music/dubist.mp3" id="5_4kw4s"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_xrivr"]
-font_size = 100
-font_color = Color(1, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4be4i"]
+sky_top_color = Color(0.054220617, 0.07459121, 0.10172378, 1)
+sky_horizon_color = Color(0.09357732, 0.096370704, 0.101963885, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.09411765, 0.09803922, 0.101960786, 1)
 
-[node name="MainMenuScene" type="Control" unique_id=1832405352]
+[sub_resource type="Sky" id="Sky_xwegt"]
+sky_material = SubResource("ProceduralSkyMaterial_4be4i")
+
+[sub_resource type="Environment" id="Environment_p0wc7"]
+background_mode = 2
+sky = SubResource("Sky_xwegt")
+
+[sub_resource type="Animation" id="Animation_xwegt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4be4i"]
+resource_name = "rotate"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwegt"]
+_data = {
+&"RESET": SubResource("Animation_xwegt"),
+&"rotate": SubResource("Animation_4be4i")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6e6s"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kv3xr"]
+material = SubResource("StandardMaterial3D_w6e6s")
+
+[node name="Node3D" type="Node3D" unique_id=1293690006]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=911586080]
+environment = SubResource("Environment_p0wc7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=56501137]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainMenuScene" type="Control" parent="." unique_id=1832405352]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +83,7 @@ grow_vertical = 2
 theme = ExtResource("1_4be4i")
 script = ExtResource("1_cynu2")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=378074800]
+[node name="CenterContainer" type="CenterContainer" parent="MainMenuScene" unique_id=378074800]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,37 +91,147 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=747583176]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScene/CenterContainer" unique_id=747583176]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="MainMenuScene/CenterContainer/VBoxContainer" unique_id=1964401475]
+layout_mode = 2
+theme = ExtResource("1_4be4i")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("3_nwpqy")
+theme_override_font_sizes/normal_font_size = 90
+bbcode_enabled = true
+text = "[shake]3DTD[/shake]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuScene/CenterContainer/VBoxContainer" unique_id=738122373]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1269702203]
-layout_mode = 2
-text = "3DTD"
-label_settings = SubResource("LabelSettings_xrivr")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=738122373]
-layout_mode = 2
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=845680227]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer" unique_id=845680227]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="play" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1027133064]
+[node name="play" type="Button" parent="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1027133064]
 custom_maximum_size = Vector2(200, -1)
 layout_mode = 2
 text = "PLAY"
 
-[node name="exit" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1215270623]
+[node name="exit" type="Button" parent="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1215270623]
 custom_maximum_size = Vector2(200, -1)
 layout_mode = 2
 text = "QUIT"
 
-[node name="CheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=787949413]
+[node name="CheckButton" type="CheckButton" parent="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=787949413]
 layout_mode = 2
 text = "+1000000 Fragment"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/exit" to="." method="_on_exit_pressed"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScene/CenterContainer/VBoxContainer" unique_id=2068434055]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainMenuScene/CenterContainer/VBoxContainer/VBoxContainer" unique_id=1050663143]
+layout_mode = 2
+text = "volume:"
+
+[node name="HSlider" type="HSlider" parent="MainMenuScene/CenterContainer/VBoxContainer/VBoxContainer" unique_id=23839860]
+layout_mode = 2
+min_value = -7.5
+max_value = 2.5
+step = 0.1
+value = 1.0
+
+[node name="CameraRotationEasifier" type="Node3D" parent="." unique_id=1986097419]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRotationEasifier" unique_id=1460633766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+fov = 50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraRotationEasifier" unique_id=1437086259]
+libraries/ = SubResource("AnimationLibrary_xwegt")
+autoplay = &"rotate"
+
+[node name="Objects" type="Node3D" parent="." unique_id=891846841]
+
+[node name="Towers" type="Node3D" parent="Objects" unique_id=1796789124]
+
+[node name="BlueTower" type="Node3D" parent="Objects/Towers" unique_id=1468860100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4278, 0, 0)
+
+[node name="Kek torony" parent="Objects/Towers/BlueTower" unique_id=1313693794 instance=ExtResource("3_p0wc7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+
+[node name="Kek agyu" parent="Objects/Towers/BlueTower" unique_id=1892388435 instance=ExtResource("4_4kw4s")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0, -0.53503925, 0)
+
+[node name="BlueTower2" type="Node3D" parent="Objects/Towers" unique_id=1762612012]
+transform = Transform3D(0.42527354, 0.73425716, 0.5291586, -0.45526534, -0.3317613, 0.82623696, 0.7822249, -0.5922844, 0.19319254, 7.141099, 0.5441489, -1.6902189)
+
+[node name="Kek torony" parent="Objects/Towers/BlueTower2" unique_id=1096773630 instance=ExtResource("3_p0wc7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+
+[node name="Kek agyu" parent="Objects/Towers/BlueTower2" unique_id=2060309007 instance=ExtResource("4_4kw4s")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0, -0.53503925, 0)
+
+[node name="BlueTower3" type="Node3D" parent="Objects/Towers" unique_id=1765668493]
+transform = Transform3D(0.77142084, 0, -0.6363253, -0.58648914, 0.3879478, -0.7110042, 0.246861, 0.92168134, 0.29927102, -1.1847086, -0.07944155, -15.071297)
+
+[node name="Kek torony" parent="Objects/Towers/BlueTower3" unique_id=1157393281 instance=ExtResource("3_p0wc7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+
+[node name="Kek agyu" parent="Objects/Towers/BlueTower3" unique_id=446107803 instance=ExtResource("4_4kw4s")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0, -0.53503925, 0)
+
+[node name="BlueTower4" type="Node3D" parent="Objects/Towers" unique_id=1061990069]
+transform = Transform3D(-0.517061, -0.063109756, -0.85361874, 0.7111314, 0.5233667, -0.46944585, 0.4763823, -0.84976727, -0.22573322, -1.1847086, -2.2072868, 0)
+
+[node name="Kek torony" parent="Objects/Towers/BlueTower4" unique_id=380586967 instance=ExtResource("3_p0wc7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+
+[node name="Kek agyu" parent="Objects/Towers/BlueTower4" unique_id=962435887 instance=ExtResource("4_4kw4s")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0, -0.53503925, 0)
+
+[node name="BlueTower5" type="Node3D" parent="Objects/Towers" unique_id=2044438296]
+transform = Transform3D(0.7580608, -0.27282587, -0.59237653, 0.5441345, 0.76529616, 0.34385973, 0.3595296, -0.582999, 0.7285949, 7.1506147, 1.508007, 8.454632)
+
+[node name="Kek torony" parent="Objects/Towers/BlueTower5" unique_id=2027558098 instance=ExtResource("3_p0wc7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+
+[node name="Kek agyu" parent="Objects/Towers/BlueTower5" unique_id=1886607473 instance=ExtResource("4_4kw4s")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0, -0.53503925, 0)
+
+[node name="Enemies" type="Node3D" parent="Objects" unique_id=1241240853]
+
+[node name="EnemyMesh" type="MeshInstance3D" parent="Objects/Enemies" unique_id=235269722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894409, -4.4176297, -6.264346)
+mesh = SubResource("CapsuleMesh_kv3xr")
+
+[node name="EnemyMesh5" type="MeshInstance3D" parent="Objects/Enemies" unique_id=1397403630]
+transform = Transform3D(0.96717185, -0.17880401, 0.18057624, 0, 0.7105851, 0.70361125, -0.2541233, -0.680513, 0.68725795, -8.894409, -0.40460968, 13.199222)
+mesh = SubResource("CapsuleMesh_kv3xr")
+
+[node name="EnemyMesh2" type="MeshInstance3D" parent="Objects/Enemies" unique_id=584172231]
+transform = Transform3D(0.4457303, -0.5508946, -0.70557755, 0.2960505, 0.83457285, -0.46458814, 0.84479505, -0.0018055744, 0.53508717, 9.687109, -6.2924337, 0)
+mesh = SubResource("CapsuleMesh_kv3xr")
+
+[node name="EnemyMesh3" type="MeshInstance3D" parent="Objects/Enemies" unique_id=1246364765]
+transform = Transform3D(0.9004289, 0.28994176, -0.32428625, -0.43500322, 0.60016096, -0.67125183, 0, 0.7454801, 0.66652787, -0.1360364, 3.6323323, -10.024559)
+mesh = SubResource("CapsuleMesh_kv3xr")
+
+[node name="EnemyMesh4" type="MeshInstance3D" parent="Objects/Enemies" unique_id=2055168616]
+transform = Transform3D(0.96876085, -0.24799688, 0, 0.24799688, 0.96876085, 0, 0, 0, 1, 0.5292702, 3.315002, 17.350857)
+mesh = SubResource("CapsuleMesh_kv3xr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=988575934]
+stream = ExtResource("5_4kw4s")
+autoplay = true
+
+[connection signal="pressed" from="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/play" to="MainMenuScene" method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/exit" to="MainMenuScene" method="_on_exit_pressed"]
+[connection signal="toggled" from="MainMenuScene/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CheckButton" to="MainMenuScene" method="_on_check_button_toggled"]
+[connection signal="value_changed" from="MainMenuScene/CenterContainer/VBoxContainer/VBoxContainer/HSlider" to="MainMenuScene" method="_on_h_slider_value_changed"]

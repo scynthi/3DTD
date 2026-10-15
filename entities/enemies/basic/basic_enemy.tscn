@@ -74,8 +74,9 @@ enemy_stats = SubResource("Resource_ose1q")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1823911225]
 avoidance_enabled = true
+debug_enabled = true
 debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
+debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="HurtboxComponent" parent="." unique_id=794286188 node_paths=PackedStringArray("health_handler") instance=ExtResource("4_ur1ql")]
 collision_layer = 4

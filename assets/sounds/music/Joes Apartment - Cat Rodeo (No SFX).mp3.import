@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmy2iu0hbht0n"
+path="res://.godot/imported/Joes Apartment - Cat Rodeo (No SFX).mp3-c1818a1ea9bcad0568763cb9c7220cf3.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/Joes Apartment - Cat Rodeo (No SFX).mp3"
+dest_files=["res://.godot/imported/Joes Apartment - Cat Rodeo (No SFX).mp3-c1818a1ea9bcad0568763cb9c7220cf3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

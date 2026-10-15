@@ -19,7 +19,7 @@ func dead() -> void:
 
 func _on_wave_timer_timeout() -> void:
 	if global.current_wave == global.last_wave:
-		print("yo woned")
+		scene_loader.load_map(scene_loader.map_list.win_scene,)
 		return
 		
 	

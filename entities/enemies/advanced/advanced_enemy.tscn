@@ -77,7 +77,7 @@ enemy_stats = SubResource("Resource_ose1q")
 navigation_layers = 2
 debug_enabled = true
 debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
+debug_path_custom_color = Color(0, 0.53333336, 1, 1)
 
 [node name="HurtboxComponent" parent="." unique_id=794286188 node_paths=PackedStringArray("health_handler") instance=ExtResource("3_3mbdp")]
 collision_layer = 4

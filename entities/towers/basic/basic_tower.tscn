@@ -25,7 +25,6 @@ default_stats = SubResource("Resource_pa52q")
 health_component = NodePath("HealthHandler/HealthComponent")
 
 [node name="HealthHandler" parent="." unique_id=381838993 node_paths=PackedStringArray("health_component") instance=ExtResource("2_ctiyy")]
-visible = false
 health_component = NodePath("HealthComponent")
 
 [node name="HealthComponent" parent="HealthHandler" unique_id=959973023 instance=ExtResource("3_k6dhx")]
@@ -46,7 +45,6 @@ transform = Transform3D(-2.3822707e-08, 0, 0.545, 0, 0.545, 0, -0.545, 0, -2.382
 transform = Transform3D(0.99999964, 0, 1.0658141e-14, 0, 0.99999964, 0, -1.0658141e-14, 0, 0.99999964, 2.9540558, 3.982243, 1.2912588e-07)
 
 [node name="DetectionArea" type="Area3D" parent="." unique_id=462242013]
-visible = false
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -57,7 +55,6 @@ shape = SubResource("BoxShape3D_w6e6s")
 debug_color = Color(0, 1, 1, 1)
 
 [node name="HurtboxComponent" parent="." unique_id=1467163675 node_paths=PackedStringArray("health_handler") instance=ExtResource("4_k6dhx")]
-visible = false
 collision_layer = 8
 collision_mask = 4
 health_handler = NodePath("../HealthHandler")
@@ -68,7 +65,6 @@ shape = SubResource("BoxShape3D_ela8a")
 
 [node name="HpLabel" type="Label3D" parent="." unique_id=114713139]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8611212, -0.13723946)
-visible = false
 billboard = 1
 double_sided = false
 modulate = Color(0, 1, 0.5176471, 1)
